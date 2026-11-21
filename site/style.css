@@ -1,0 +1,43 @@
+:root {
+  color-scheme: light;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: #232f27;
+  background: #f7f7f2;
+  line-height: 1.55;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; }
+.hero { background: #173a2f; color: #fffdf5; padding: clamp(2.5rem, 7vw, 5rem) 0 2.6rem; }
+.container { width: min(100% - 2rem, 73rem); margin: 0 auto; }
+h1, h2 { font-family: Georgia, "Times New Roman", serif; }
+h1 { font-size: clamp(2.3rem, 8vw, 5rem); line-height: 1.06; margin: 0 0 1rem; font-weight: 500; }
+.intro { max-width: 35rem; color: #e1ebdf; margin: 0 0 .75rem; }
+.timestamp { color: #e2e9c8; font-size: .9rem; }
+nav { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.5rem; }
+nav a { color: #fffdf5; border: 1px solid #7a9b8c; padding: .5rem .9rem; border-radius: .35rem; text-decoration: none; }
+nav a:hover, nav a:focus-visible { background: #2e5b4a; }
+.ranking { margin: 2.75rem 0; scroll-margin-top: 1rem; }
+.section-heading { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: .2rem 1rem; margin-bottom: .8rem; }
+h2 { margin: 0; font-size: clamp(1.65rem, 4vw, 2.5rem); line-height: 1.25; color: #1e4d3a; overflow-wrap: anywhere; }
+.section-heading p { margin: 0; color: #536056; }
+.table-wrap { overflow-x: auto; border: 1px solid #d1d9cc; border-radius: .55rem; background: #fff; }
+table { width: 100%; min-width: 40rem; border-collapse: collapse; }
+th, td { padding: .65rem .8rem; text-align: left; border-bottom: 1px solid #e4e8df; }
+thead th { background: #e8ede1; color: #234633; font-size: .84rem; white-space: nowrap; }
+tbody th { font-weight: 600; }
+tbody tr:nth-child(even) { background: #f9faf7; }
+tbody tr:last-child > * { border-bottom: 0; }
+.rank { color: #536056; }
+.amount, .high, .rank { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.high { font-weight: 700; color: #1c583c; }
+footer { font-size: .92rem; color: #435247; padding: .3rem 0 2.5rem; max-width: 56rem; }
+footer a { color: #1e563d; text-underline-offset: .2em; }
+.scope { color: #614520; }
+:focus-visible { outline: 2px solid #7e611c; outline-offset: 2px; }
+
+@media (max-width: 37rem) {
+  th, td { padding: .58rem .65rem; }
+  .ranking { margin: 2rem 0; }
+  .section-heading p { font-size: .85rem; }
+}

@@ -1,0 +1,349 @@
+{
+  "checked_at": "2026-11-21T00:06:48+07:00",
+  "rankings": {
+    "lunar": {
+      "total": 2119,
+      "top": [
+        {
+          "rank": 1,
+          "name": "Công ty Cổ Phần Công Nghệ Phú Thành",
+          "place": "Đại Thanh",
+          "high": 500.0,
+          "mean": 80.0,
+          "low": 8.0
+        },
+        {
+          "rank": 2,
+          "name": "Công ty TNHH công nghệ công trình Sheng Huei",
+          "place": "Thanh Xuân / Khương Đình",
+          "high": 470.0,
+          "mean": 44.33,
+          "low": 5.25
+        },
+        {
+          "rank": 3,
+          "name": "Công ty Cổ phần thương mại Đầu tư phát triển Công Nghệ Việt",
+          "place": "Láng",
+          "high": 400.0,
+          "mean": 37.0,
+          "low": 15.0
+        },
+        {
+          "rank": 4,
+          "name": "CÔNG TY CỔ PHẦN NGUYÊN LIỆU THỰC PHẨM QUỐC TẾ",
+          "place": "Kim Liên",
+          "high": 397.66,
+          "mean": 48.14,
+          "low": 8.3
+        },
+        {
+          "rank": 5,
+          "name": "CÔNG TY TNHH FALINWA VIETNAM",
+          "place": "Văn Miếu - Quốc Tử Giám",
+          "high": 300.0,
+          "mean": 40.0,
+          "low": 5.0
+        },
+        {
+          "rank": 5,
+          "name": "Công ty TNHH Light Decor Việt Nam",
+          "place": "Hà Đông",
+          "high": 300.0,
+          "mean": 17.4,
+          "low": 5.0
+        },
+        {
+          "rank": 7,
+          "name": "Công ty CP Dinh dưỡng Nutricare",
+          "place": "Hà Đông",
+          "high": 280.0,
+          "mean": 16.0,
+          "low": 1.0
+        },
+        {
+          "rank": 8,
+          "name": "Công ty TNHH Kamigumi Việt Nam - chi nhánh Hà Nội",
+          "place": "Láng",
+          "high": 272.0,
+          "mean": 97.6,
+          "low": null
+        },
+        {
+          "rank": 9,
+          "name": "CÔNG TY TNHH THÁP PHƯƠNG ĐÔNG",
+          "place": "Từ Liêm",
+          "high": 168.57,
+          "mean": 22.986,
+          "low": 7.9
+        },
+        {
+          "rank": 10,
+          "name": "CÔNG TY CỔ PHẦN THIỆP NỔI VÀ THỦ CÔNG MỸ NGHỆ VIỆT NAM",
+          "place": "Hà Đông",
+          "high": 160.0,
+          "mean": 19.0,
+          "low": 3.7
+        },
+        {
+          "rank": 11,
+          "name": "Công ty cổ phần Nhật Nam",
+          "place": "Hà Đông",
+          "high": 150.0,
+          "mean": 50.0,
+          "low": 20.0
+        },
+        {
+          "rank": 11,
+          "name": "Công ty cổ phần thí nghiệm điện Việt Nam",
+          "place": "Thanh Xuân / Khương Đình",
+          "high": 150.0,
+          "mean": 40.0,
+          "low": 30.0
+        },
+        {
+          "rank": 11,
+          "name": "Công ty TNHH Dữ liệu số DTK",
+          "place": "Hoàng Mai",
+          "high": 150.0,
+          "mean": 23.3,
+          "low": 5.4
+        },
+        {
+          "rank": 11,
+          "name": "Tổng công ty Dược Việt Nam - CTCP",
+          "place": "Văn Miếu - Quốc Tử Giám",
+          "high": 150.0,
+          "mean": 20.0,
+          "low": 12.0
+        },
+        {
+          "rank": 15,
+          "name": "CÔNG TY CỔ PHẦN ATWOM VIỆT NAM",
+          "place": "Thanh Xuân / Khương Đình",
+          "high": 136.0,
+          "mean": 64.0,
+          "low": 6.0
+        },
+        {
+          "rank": 16,
+          "name": "Công Ty TNHH Smallpin Logistics VietNam",
+          "place": "Thanh Xuân / Khương Đình",
+          "high": 135.0,
+          "mean": 23.5,
+          "low": 1.0
+        },
+        {
+          "rank": 17,
+          "name": "Công Ty TNHH Smallpin Partners",
+          "place": "Thanh Xuân / Khương Đình",
+          "high": 127.0,
+          "mean": 25.4,
+          "low": 1.0
+        },
+        {
+          "rank": 18,
+          "name": "CÔNG TY TNHH ECOPOWER",
+          "place": "Dương Nội",
+          "high": 125.0,
+          "mean": 73.113,
+          "low": 29.6
+        },
+        {
+          "rank": 19,
+          "name": "Ngân hàng TNHH MTV Industrial Bank of Korea (Việt Nam)",
+          "place": "Từ Liêm",
+          "high": 121.4,
+          "mean": 36.8,
+          "low": 6.3
+        },
+        {
+          "rank": 20,
+          "name": "Công ty TNHH Giải pháp Toàn cầu IIJ Việt Nam",
+          "place": "Láng",
+          "high": 120.0,
+          "mean": 35.0,
+          "low": 3.0
+        },
+        {
+          "rank": 20,
+          "name": "Công ty TNHH MJ Logistics (Hanoi)",
+          "place": "Từ Liêm",
+          "high": 120.0,
+          "mean": null,
+          "low": 9.0
+        }
+      ]
+    },
+    "solar": {
+      "total": 2365,
+      "top": [
+        {
+          "rank": 1,
+          "name": "CÔNG TY TNHH TUNGALOY - NTK VIỆT NAM",
+          "place": "Thanh Xuân / Khương Đình",
+          "high": 653.0,
+          "mean": 186.0,
+          "low": 34.0
+        },
+        {
+          "rank": 2,
+          "name": "Công ty TNHH công nghệ công trình Sheng Huei",
+          "place": "Thanh Xuân / Khương Đình",
+          "high": 188.0,
+          "mean": 17.73,
+          "low": 2.1
+        },
+        {
+          "rank": 3,
+          "name": "Công ty TNHH Omni Logistics Việt Nam",
+          "place": "Kim Liên",
+          "high": 178.8,
+          "mean": 35.0,
+          "low": 13.7
+        },
+        {
+          "rank": 4,
+          "name": "Công ty TNHH ANC International Vietnam Inc",
+          "place": "Từ Liêm",
+          "high": 130.0,
+          "mean": 27.0,
+          "low": 10.0
+        },
+        {
+          "rank": 5,
+          "name": "Công ty TNHH Itsuwa Việt Nam",
+          "place": "Láng",
+          "high": 105.0,
+          "mean": 40.0,
+          "low": 8.7
+        },
+        {
+          "rank": 6,
+          "name": "Công ty TNHH Kurihara Việt Nam",
+          "place": "Cầu Giấy",
+          "high": 92.881,
+          "mean": 21.814,
+          "low": 6.674
+        },
+        {
+          "rank": 7,
+          "name": "CÔNG TY TNHH FUJIFILM BUSINESS INNOVATION VIỆT NAM- CHI NHÁNH HÀ NỘI",
+          "place": "Kim Liên",
+          "high": 80.0,
+          "mean": 25.0,
+          "low": 8.0
+        },
+        {
+          "rank": 8,
+          "name": "CHI NHÁNH CÔNG TY CỔ PHẦN I-GLOCAL TẠI THÀNH PHỐ HÀ NỘI",
+          "place": "Cầu Giấy",
+          "high": 76.0,
+          "mean": 38.0,
+          "low": 21.0
+        },
+        {
+          "rank": 9,
+          "name": "Công ty TNHH DS & WAC VINA",
+          "place": "Cầu Giấy",
+          "high": 75.0,
+          "mean": 35.714,
+          "low": 3.0
+        },
+        {
+          "rank": 10,
+          "name": "Công ty Cổ phần Hanel",
+          "place": "Kim Liên",
+          "high": 71.0,
+          "mean": 18.47,
+          "low": 6.5
+        },
+        {
+          "rank": 11,
+          "name": "CÔNG TY CỔ PHẦN ATWOM VIỆT NAM",
+          "place": "Thanh Xuân / Khương Đình",
+          "high": 68.0,
+          "mean": 32.0,
+          "low": 6.0
+        },
+        {
+          "rank": 12,
+          "name": "CÔNG TY TNHH INTERCEM VINA",
+          "place": "Từ Liêm",
+          "high": 60.7,
+          "mean": 23.0,
+          "low": 11.0
+        },
+        {
+          "rank": 13,
+          "name": "Công ty TNHH một thành viên Kinh doanh dịch vụ nhà Hà Nội",
+          "place": "Văn Miếu - Quốc Tử Giám",
+          "high": 60.543,
+          "mean": 12.90455,
+          "low": 7.057435
+        },
+        {
+          "rank": 14,
+          "name": "Tổng công ty Gas Petrolimex-CTCP",
+          "place": "Văn Miếu - Quốc Tử Giám",
+          "high": 60.0,
+          "mean": 24.0,
+          "low": 12.0
+        },
+        {
+          "rank": 15,
+          "name": "Công ty TNHH INTINS",
+          "place": "Cầu Giấy",
+          "high": 55.075,
+          "mean": 13.606151,
+          "low": 2.793561
+        },
+        {
+          "rank": 16,
+          "name": "Công ty TNHH IDAKA Việt Nam",
+          "place": "Cầu Giấy",
+          "high": 54.943,
+          "mean": 32.03,
+          "low": 15.138
+        },
+        {
+          "rank": 17,
+          "name": "Công ty Cổ phần đầu tư và Công nghệ Vạn Xuân",
+          "place": "Cầu Giấy",
+          "high": 50.0,
+          "mean": 14.282,
+          "low": 6.5
+        },
+        {
+          "rank": 17,
+          "name": "Công ty cổ phần dược phẩm Quốc tế - Winsacom",
+          "place": "Láng",
+          "high": 50.0,
+          "mean": 25.0,
+          "low": 12.0
+        },
+        {
+          "rank": 17,
+          "name": "Công ty CP Tập đoàn truyền thông Starworld",
+          "place": "Kim Liên",
+          "high": 50.0,
+          "mean": 45.0,
+          "low": 40.0
+        },
+        {
+          "rank": 20,
+          "name": "CÔNG TY CỔ PHẦN TÂN PHÚ LONG",
+          "place": "Láng",
+          "high": 47.5,
+          "mean": 16.8,
+          "low": 10.07
+        }
+      ]
+    }
+  },
+  "blocked": [
+    "Gia Lâm"
+  ],
+  "new_sources": 0,
+  "directories_checked": 1,
+  "directory": "https://thuvienphapluat.vn/phap-luat/ho-tro-phap-luat/link-nop-bao-cao-tien-luong-thuong-tet-2027-ha-noi-cac-phuong-xa-tong-hop-chi-tiet-ra-sao-301249.html"
+}

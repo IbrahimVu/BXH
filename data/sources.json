@@ -1,0 +1,866 @@
+{
+  "directory": [
+    "https://thuvienphapluat.vn/phap-luat/ho-tro-phap-luat/link-nop-bao-cao-tien-luong-thuong-tet-2027-ha-noi-cac-phuong-xa-tong-hop-chi-tiet-ra-sao-301249.html",
+    "https://thuvienphapluat.vn/phap-luat/ho-tro-phap-luat/tong-hop-cong-van-bao-cao-luong-thuong-tet-2027-ha-noi-cua-ubnd-xa-phuong-gui-cac-doanh-nghiep-nhu-301509.html"
+  ],
+  "sources": [
+    {
+      "id": 0,
+      "place": "Dương Nội",
+      "url": "https://docs.google.com/spreadsheets/d/119zLbr98SKa_p6HPfgwC4mcebsCHoOOCTq-U6ijavwc/edit?usp=sharing"
+    },
+    {
+      "id": 1,
+      "place": "Hà Đông",
+      "url": "https://docs.google.com/spreadsheets/d/1xoq3XbWfWCBP-10Cvh-cmsc3VBcayL-b/edit?gid=1451800128"
+    },
+    {
+      "id": 2,
+      "place": "Kiến Hưng",
+      "url": "https://docs.google.com/spreadsheets/d/1IbyyL0m-spW4oMubRZGg8Fb5U6cXq45rCKHuocleUI0/edit?gid=0"
+    },
+    {
+      "id": 3,
+      "place": "Nghĩa Đô",
+      "url": "https://docs.google.com/spreadsheets/d/1VaAmt9fc71QawlEODW09JCQxdejGYWME/edit?gid=1792705786"
+    },
+    {
+      "id": 4,
+      "place": "Láng",
+      "url": "https://docs.google.com/spreadsheets/d/1XsjhlwtlBTX4fjodALzfMrNGtl6QOsoPQ8NnfDKUQzU/edit?usp=sharing"
+    },
+    {
+      "id": 5,
+      "place": "Đống Đa",
+      "url": "https://docs.google.com/document/d/1jx4YLLulyzmnt_04nzkf9IvY3pybfYHOtgB4a1NPINI/edit?tab=t.0"
+    },
+    {
+      "id": 6,
+      "place": "Từ Liêm",
+      "url": "https://docs.google.com/spreadsheets/d/1as2XK_DiLfSPOFnvT15AXpvyEBqvgtU2DkhcezrGsII/edit"
+    },
+    {
+      "id": 7,
+      "place": "Tương Mai",
+      "url": "https://docs.google.com/spreadsheets/d/1JnJfXGDgn5H4jFFD-7HcoCl-6uq09uxkIefCJ17bQfY/edit?gid=0"
+    },
+    {
+      "id": 8,
+      "place": "Hai Bà Trưng",
+      "url": "https://docs.google.com/document/d/13C7nR8CP2mTQsiRLLB1YDXrdzQMUYcQ_/edit"
+    },
+    {
+      "id": 9,
+      "place": "Phú Diễn",
+      "url": "https://docs.google.com/spreadsheets/d/1bZa0Iq9T9QHFTnbgqSY2D0qwoFJ44d_u/htmlview"
+    },
+    {
+      "id": 10,
+      "place": "Thanh Xuân / Khương Đình",
+      "url": "https://docs.google.com/spreadsheets/u/0/d/15HedfXtyQE7Y-UIOfeLVZZLEW1P-xfhS/htmlview"
+    },
+    {
+      "id": 11,
+      "place": "Kim Liên",
+      "url": "https://docs.google.com/spreadsheets/d/1z9z3uvxO1XQ1mcvbmexPi7bROrumB9MT/edit?gid=387306274"
+    },
+    {
+      "id": 12,
+      "place": "Phương Liệt",
+      "url": "https://docs.google.com/spreadsheets/d/11ITv-HxjTQ3DglPoXbddbQfk0kwUNXZd/edit?gid=711823865"
+    },
+    {
+      "id": 13,
+      "place": "Xuân Đỉnh",
+      "url": "https://docs.google.com/spreadsheets/d/1jyij7Gk9HsrDMDurX7pJraibr6uXOLSu1MIuzeNDfWw/edit?gid=0"
+    },
+    {
+      "id": 14,
+      "place": "Hoàng Mai",
+      "url": "https://docs.google.com/spreadsheets/d/1B_DkEY75jifpaaPr4dRpX7jAqheIS7IhWS8vybvJClk/edit?gid=0"
+    },
+    {
+      "id": 15,
+      "place": "Định Công",
+      "url": "https://docs.google.com/spreadsheets/d/1lkOswj_wAcZPCE8ttudLDsKgf81_FNdol4uyWukwhss/edit?usp=sharing"
+    },
+    {
+      "id": 16,
+      "place": "Cầu Giấy",
+      "url": "https://docs.google.com/spreadsheets/d/1IPAs7M-RVqxp_MCBCpYCjoKWts83_4jT/edit?gid=1429323643"
+    },
+    {
+      "id": 17,
+      "place": "Hoài Đức",
+      "url": "https://docs.google.com/spreadsheets/d/1lZ_FQzIG1lZklYA69Znp4Ssju0YUXQeZ/edit?gid=792546075"
+    },
+    {
+      "id": 18,
+      "place": "Thanh Liệt",
+      "url": "https://docs.google.com/forms/d/e/1FAIpQLSfX3E9jMGE3kBbH7jmd4y_lIhshwn72C2hpUCOrzYVT_w13DA/viewform"
+    },
+    {
+      "id": 19,
+      "place": "Đại Thanh",
+      "url": "https://docs.google.com/spreadsheets/d/1lJMlB-PAtIqs0VnRswAVp1HFUqhdHcGGgJ-5LoWqUZc/edit?usp=sharing"
+    },
+    {
+      "id": 20,
+      "place": "Nam Phù (trùng Láng)",
+      "url": "https://docs.google.com/spreadsheets/d/1XsjhlwtlBTX4fjodALzfMrNGtl6QOsoPQ8NnfDKUQzU/edit?usp=drivesdk"
+    },
+    {
+      "id": 21,
+      "place": "Bồ Đề",
+      "url": "https://docs.google.com/spreadsheets/d/1lkcCQJ4gMgopr8a_reg-aNS76qF0qTNC/edit?gid=1145814093"
+    },
+    {
+      "id": 22,
+      "place": "Khương Đình (trùng Thanh Xuân)",
+      "url": "https://docs.google.com/spreadsheets/d/15HedfXtyQE7Y-UIOfeLVZZLEW1P-xfhS/edit?gid=800472999"
+    },
+    {
+      "id": 23,
+      "place": "Vĩnh Tuy",
+      "url": "https://docs.google.com/forms/d/1VfZg0KGONhwfI5x_Bxiih0ko6tRK84hXpGhtxntRqsQ/edit"
+    },
+    {
+      "id": 24,
+      "place": "Thượng Cát",
+      "url": "https://docs.google.com/spreadsheets/d/1YAKFoT6b7g_Bht5iibrkJCvRpRQWyg3w/edit?gid=1050092760"
+    },
+    {
+      "id": 25,
+      "place": "Phù Đổng",
+      "url": "https://docs.google.com/forms/d/e/1FAIpQLSf9eyYKUZHk2k9FUUE570BZwhJ2bY-Z4gV7unVjyYIx9DnymA/formResponse"
+    },
+    {
+      "id": 26,
+      "place": "Văn Miếu - Quốc Tử Giám",
+      "url": "https://docs.google.com/spreadsheets/d/1KwGOOZz3I9GbPe2AknXOgwMBYWBsYZsT/edit?gid=1106102721"
+    },
+    {
+      "id": 27,
+      "place": "Gia Lâm",
+      "url": "https://docs.google.com/spreadsheets/d/1Ag2I_6c_U1yZzUfWcs9FkMflq5a5AjCu/edit?gid=1377309527",
+      "known_access_issue": true
+    },
+    {
+      "id": 28,
+      "place": "Tây Hồ",
+      "url": "https://forms.gle/VPUrMvHY9TFhYyvQ9"
+    },
+    {
+      "id": 29,
+      "place": "Việt Hưng",
+      "url": "https://docs.google.com/spreadsheets/d/1hWZ2IFyOZ8BgUyqBdgxfojXL2Itn_jGX-MfbBzZP-Mw/edit?usp=sharing"
+    }
+  ],
+  "layouts": [
+    {
+      "source": 0,
+      "tab": "Biểu mẫu 2",
+      "first_row": 5,
+      "unit": 1,
+      "columns": {
+        "name": 1,
+        "tax": null,
+        "address": null,
+        "lunar": [
+          4,
+          5,
+          6
+        ],
+        "solar": [
+          3,
+          null,
+          null
+        ],
+        "no_lunar": null,
+        "no_solar": null,
+        "status_lunar": null,
+        "status_solar": null
+      },
+      "header_sha256": "fae9e83d8863c4932c3f913aea9d9d291a8c02b40306ce9e0164aa77f70fe5a1"
+    },
+    {
+      "source": 1,
+      "tab": "Biểu mẫu 2",
+      "first_row": 5,
+      "unit": 1,
+      "columns": {
+        "name": 1,
+        "tax": null,
+        "address": null,
+        "lunar": [
+          4,
+          5,
+          6
+        ],
+        "solar": [
+          3,
+          null,
+          null
+        ],
+        "no_lunar": null,
+        "no_solar": null,
+        "status_lunar": null,
+        "status_solar": null
+      },
+      "header_sha256": "fae9e83d8863c4932c3f913aea9d9d291a8c02b40306ce9e0164aa77f70fe5a1"
+    },
+    {
+      "source": 2,
+      "tab": "Tình hình tiền lương, thưởng",
+      "first_row": 8,
+      "unit": 1000000,
+      "columns": {
+        "name": 1,
+        "tax": null,
+        "address": null,
+        "lunar": [
+          11,
+          12,
+          13
+        ],
+        "solar": [
+          8,
+          9,
+          10
+        ],
+        "no_lunar": null,
+        "no_solar": null,
+        "status_lunar": null,
+        "status_solar": null
+      },
+      "header_sha256": "6c55794ad344852de187e34a41154457aee4505518ff33e1b1602e2b98a2d1e2"
+    },
+    {
+      "source": 3,
+      "tab": "P. Nghĩa Đô",
+      "first_row": 7,
+      "unit": 1000000,
+      "columns": {
+        "name": 0,
+        "tax": null,
+        "address": null,
+        "lunar": [
+          17,
+          18,
+          19
+        ],
+        "solar": [
+          12,
+          13,
+          14
+        ],
+        "no_lunar": 15,
+        "no_solar": 10,
+        "status_lunar": null,
+        "status_solar": null
+      },
+      "header_sha256": "7e3a5bd967d353466b7f76793ffa76c1add7d5fc352d6f45d6f72c02d4220d59"
+    },
+    {
+      "source": 4,
+      "tab": "DN Nhập - Biểu 1",
+      "first_row": 5,
+      "unit": 1000000,
+      "columns": {
+        "name": 1,
+        "tax": 3,
+        "address": 2,
+        "lunar": [
+          22,
+          23,
+          24
+        ],
+        "solar": [
+          16,
+          17,
+          18
+        ],
+        "no_lunar": 19,
+        "no_solar": 13,
+        "status_lunar": null,
+        "status_solar": null
+      },
+      "header_sha256": "e473b3c02bbe03ec67de3295828824287e87c3cf504185bdcb4eec85e3d5e640"
+    },
+    {
+      "source": 6,
+      "tab": "Biểu 1",
+      "first_row": 11,
+      "unit": 1000000,
+      "columns": {
+        "name": 1,
+        "tax": 2,
+        "address": null,
+        "lunar": [
+          21,
+          22,
+          23
+        ],
+        "solar": [
+          15,
+          16,
+          17
+        ],
+        "no_lunar": 18,
+        "no_solar": 12,
+        "status_lunar": null,
+        "status_solar": null
+      },
+      "header_sha256": "bd97136cf59182592fc247dd31a6d39d85b2e779220e5ca49a0cb2e4099fb684"
+    },
+    {
+      "source": 7,
+      "tab": "Trang tính1",
+      "first_row": 8,
+      "unit": 1000000,
+      "columns": {
+        "name": 1,
+        "tax": 3,
+        "address": 2,
+        "lunar": [
+          22,
+          23,
+          24
+        ],
+        "solar": [
+          16,
+          17,
+          18
+        ],
+        "no_lunar": 19,
+        "no_solar": 13,
+        "status_lunar": null,
+        "status_solar": null
+      },
+      "header_sha256": "56d05c8683ba352afd502b65e23d13fbe780caa7a1bd2a3e6b933fd54436e440"
+    },
+    {
+      "source": 9,
+      "tab": "Biểu 01",
+      "first_row": 6,
+      "unit": 1000000,
+      "columns": {
+        "name": 1,
+        "tax": null,
+        "address": null,
+        "lunar": [
+          14,
+          15,
+          16
+        ],
+        "solar": [
+          9,
+          10,
+          11
+        ],
+        "no_lunar": 12,
+        "no_solar": 7,
+        "status_lunar": null,
+        "status_solar": null
+      },
+      "header_sha256": "ccceb0e703f0624e2fa2d0fb69ad444808e18d953d09bb7d96bb00d77fd3eb8d"
+    },
+    {
+      "source": 10,
+      "tab": "Biểu số 1",
+      "first_row": 6,
+      "unit": 1000000,
+      "columns": {
+        "name": 1,
+        "tax": null,
+        "address": null,
+        "lunar": [
+          12,
+          13,
+          14
+        ],
+        "solar": [
+          6,
+          7,
+          8
+        ],
+        "no_lunar": 9,
+        "no_solar": null,
+        "status_lunar": null,
+        "status_solar": null
+      },
+      "header_sha256": "aecb46acba857ed0a0b79f83533c10c09b03bc942f310593422570416a8bbfa9"
+    },
+    {
+      "source": 11,
+      "tab": "TỔNG HỢP",
+      "first_row": 6,
+      "unit": 1000000,
+      "columns": {
+        "name": 1,
+        "tax": 7,
+        "address": 2,
+        "lunar": [
+          18,
+          19,
+          20
+        ],
+        "solar": [
+          14,
+          15,
+          16
+        ],
+        "no_lunar": null,
+        "no_solar": null,
+        "status_lunar": null,
+        "status_solar": null
+      },
+      "header_sha256": "328d1db49ea409bcd7b3366fbd68afd9c9ef580c6a474c2aeae90233a45ae345"
+    },
+    {
+      "source": 12,
+      "tab": "Sheet1",
+      "first_row": 9,
+      "unit": null,
+      "columns": {
+        "name": 1,
+        "tax": 2,
+        "address": 3,
+        "lunar": [
+          14,
+          15,
+          16
+        ],
+        "solar": [
+          11,
+          12,
+          13
+        ],
+        "no_lunar": null,
+        "no_solar": null,
+        "status_lunar": null,
+        "status_solar": null
+      },
+      "header_sha256": "d2f85cc61398ce8525a51449d059db700873c03a0608652be296020e1d5d92b9"
+    },
+    {
+      "source": 13,
+      "tab": "TIỀN LƯƠNG TIỀN THƯỞNG",
+      "first_row": 6,
+      "unit": 1000000,
+      "columns": {
+        "name": 1,
+        "tax": null,
+        "address": null,
+        "lunar": [
+          15,
+          null,
+          null
+        ],
+        "solar": [
+          12,
+          null,
+          null
+        ],
+        "no_lunar": 14,
+        "no_solar": 11,
+        "status_lunar": null,
+        "status_solar": null
+      },
+      "header_sha256": "cd7fd1e23b3b7b799510cc84280e2de0a9da4b92145973a3cfa46e21995ded92"
+    },
+    {
+      "source": 14,
+      "tab": "Báo cáo tiền lương",
+      "first_row": 8,
+      "unit": 1000000,
+      "columns": {
+        "name": 1,
+        "tax": 3,
+        "address": 2,
+        "lunar": [
+          22,
+          23,
+          24
+        ],
+        "solar": [
+          16,
+          17,
+          18
+        ],
+        "no_lunar": 19,
+        "no_solar": 13,
+        "status_lunar": null,
+        "status_solar": null
+      },
+      "header_sha256": "b72a35f60268fe17eeb5320b66ea37e8b30666e31a6950a849d0f69a72cc424c"
+    },
+    {
+      "source": 15,
+      "tab": "DOANH NGHIỆP",
+      "first_row": 6,
+      "unit": 1000000,
+      "columns": {
+        "name": 1,
+        "tax": 2,
+        "address": 3,
+        "lunar": [
+          20,
+          21,
+          22
+        ],
+        "solar": [
+          14,
+          15,
+          16
+        ],
+        "no_lunar": null,
+        "no_solar": null,
+        "status_lunar": 18,
+        "status_solar": 12
+      },
+      "header_sha256": "de560c23aa29988af08b26f31fff63735fa54c721e908e5ab69cf851ab497228"
+    },
+    {
+      "source": 16,
+      "tab": "Sheet1",
+      "first_row": 5,
+      "unit": 1000,
+      "columns": {
+        "name": 1,
+        "tax": 2,
+        "address": 3,
+        "lunar": [
+          18,
+          19,
+          20
+        ],
+        "solar": [
+          15,
+          16,
+          17
+        ],
+        "no_lunar": null,
+        "no_solar": null,
+        "status_lunar": null,
+        "status_solar": null
+      },
+      "header_sha256": "9197ec7b72f2076bdc1aabeee75659595aa053e55ca6963461fe29cd4b90f711"
+    },
+    {
+      "source": 17,
+      "tab": "Phụ lục 1",
+      "first_row": 8,
+      "unit": 1000000,
+      "columns": {
+        "name": 1,
+        "tax": null,
+        "address": 2,
+        "lunar": [
+          22,
+          23,
+          24
+        ],
+        "solar": [
+          16,
+          17,
+          18
+        ],
+        "no_lunar": 19,
+        "no_solar": 13,
+        "status_lunar": null,
+        "status_solar": null
+      },
+      "header_sha256": "856cec8884ff92c36093f3475f831cc354c117d91ba54b4b85d781a0585d9608"
+    },
+    {
+      "source": 19,
+      "tab": "Trang tính1",
+      "first_row": 6,
+      "unit": 1000000,
+      "columns": {
+        "name": 1,
+        "tax": 2,
+        "address": 3,
+        "lunar": [
+          20,
+          21,
+          22
+        ],
+        "solar": [
+          14,
+          15,
+          16
+        ],
+        "no_lunar": null,
+        "no_solar": null,
+        "status_lunar": 18,
+        "status_solar": 12
+      },
+      "header_sha256": "913a031464210681902289647e3bf55b42dc28f68caf1e8670b96efd46484084"
+    },
+    {
+      "source": 21,
+      "tab": "Tiền lương, tiền thưởng",
+      "first_row": 6,
+      "unit": 1000000,
+      "columns": {
+        "name": 1,
+        "tax": null,
+        "address": null,
+        "lunar": [
+          10,
+          11,
+          12
+        ],
+        "solar": [
+          7,
+          8,
+          9
+        ],
+        "no_lunar": null,
+        "no_solar": null,
+        "status_lunar": null,
+        "status_solar": null
+      },
+      "header_sha256": "53643bbc56e6bfd2c7d0fb5b0575b2c3aabff5f286ef594dc93016a51034f0ec"
+    },
+    {
+      "source": 24,
+      "tab": "Sheet1",
+      "first_row": 10,
+      "unit": 1000000,
+      "columns": {
+        "name": 1,
+        "tax": null,
+        "address": 2,
+        "lunar": [
+          15,
+          16,
+          17
+        ],
+        "solar": [
+          10,
+          11,
+          12
+        ],
+        "no_lunar": 13,
+        "no_solar": 8,
+        "status_lunar": null,
+        "status_solar": null
+      },
+      "header_sha256": "3c0c75158528eb8e8759e23918b63e27cdc4c2380b23fbe7a51f314a9582f3e6"
+    },
+    {
+      "source": 26,
+      "tab": "Nhập liệu DN",
+      "first_row": 6,
+      "unit": 1,
+      "columns": {
+        "name": 1,
+        "tax": 2,
+        "address": 3,
+        "lunar": [
+          21,
+          22,
+          23
+        ],
+        "solar": [
+          16,
+          17,
+          18
+        ],
+        "no_lunar": null,
+        "no_solar": null,
+        "status_lunar": 19,
+        "status_solar": 14
+      },
+      "header_sha256": "b317acdc527fb5e99ff84555b86176ec8ea9cdee1ce89e8314c17055b6a78a4d"
+    },
+    {
+      "source": 27,
+      "tab": "Du lieu doanh nghiep",
+      "first_row": 6,
+      "unit": 1000000,
+      "columns": {
+        "name": 1,
+        "tax": 2,
+        "address": 3,
+        "lunar": [
+          20,
+          21,
+          22
+        ],
+        "solar": [
+          14,
+          15,
+          16
+        ],
+        "no_lunar": null,
+        "no_solar": null,
+        "status_lunar": 18,
+        "status_solar": 12
+      },
+      "header_sha256": "3763dc7f8f88abbcc29dea5c3d3afb58344c093613d3ebf9256df2568adfba42"
+    },
+    {
+      "source": 5,
+      "tab": "Văn bản (dòng văn bản)",
+      "first_row": 1,
+      "unit": 1,
+      "columns": {
+        "name": 0,
+        "tax": null,
+        "address": null,
+        "lunar": [
+          1,
+          2,
+          3
+        ],
+        "solar": [
+          4,
+          5,
+          6
+        ],
+        "no_lunar": null,
+        "no_solar": null,
+        "status_lunar": null,
+        "status_solar": null
+      }
+    },
+    {
+      "source": 29,
+      "tab": "Trang tính1",
+      "first_row": 2,
+      "unit": 1000000,
+      "columns": {
+        "name": 1,
+        "tax": 2,
+        "address": 3,
+        "lunar": [
+          20,
+          21,
+          22
+        ],
+        "solar": [
+          14,
+          15,
+          16
+        ],
+        "no_lunar": null,
+        "no_solar": null,
+        "status_lunar": 18,
+        "status_solar": 12
+      },
+      "header_sha256": "9d0dc5c731cead16ed7e0ee8982cee83188c9ee60fc0ec71c5ebce768b173b5d"
+    },
+    {
+      "source": 7,
+      "tab": "Góp vốn",
+      "first_row": 2,
+      "unit": 1000000,
+      "columns": {
+        "name": 1,
+        "tax": 3,
+        "address": 2,
+        "lunar": [
+          22,
+          23,
+          24
+        ],
+        "solar": [
+          16,
+          17,
+          18
+        ],
+        "no_lunar": 19,
+        "no_solar": 13,
+        "status_lunar": null,
+        "status_solar": null
+      },
+      "supplemental": true,
+      "header_sha256": "b35a5f50b569505a1d4697f0ad75caea61239cc3550f5cd39212f71cbe030188"
+    },
+    {
+      "source": 7,
+      "tab": "Dân doanh",
+      "first_row": 8,
+      "unit": 1000000,
+      "columns": {
+        "name": 1,
+        "tax": 3,
+        "address": 2,
+        "lunar": [
+          22,
+          23,
+          24
+        ],
+        "solar": [
+          16,
+          17,
+          18
+        ],
+        "no_lunar": 19,
+        "no_solar": 13,
+        "status_lunar": null,
+        "status_solar": null
+      },
+      "supplemental": true,
+      "header_sha256": "56d05c8683ba352afd502b65e23d13fbe780caa7a1bd2a3e6b933fd54436e440"
+    },
+    {
+      "source": 7,
+      "tab": "FDI",
+      "first_row": 2,
+      "unit": 1000000,
+      "columns": {
+        "name": 1,
+        "tax": 3,
+        "address": 2,
+        "lunar": [
+          22,
+          23,
+          24
+        ],
+        "solar": [
+          16,
+          17,
+          18
+        ],
+        "no_lunar": 19,
+        "no_solar": 13,
+        "status_lunar": null,
+        "status_solar": null
+      },
+      "supplemental": true,
+      "header_sha256": "b35a5f50b569505a1d4697f0ad75caea61239cc3550f5cd39212f71cbe030188"
+    },
+    {
+      "source": 11,
+      "tab": "Bản sao của TỔNG HỢP",
+      "first_row": 6,
+      "unit": 1000000,
+      "columns": {
+        "name": 1,
+        "tax": 7,
+        "address": 2,
+        "lunar": [
+          18,
+          19,
+          20
+        ],
+        "solar": [
+          14,
+          15,
+          16
+        ],
+        "no_lunar": null,
+        "no_solar": null,
+        "status_lunar": null,
+        "status_solar": null
+      },
+      "supplemental": true,
+      "header_sha256": "328d1db49ea409bcd7b3366fbd68afd9c9ef580c6a474c2aeae90233a45ae345"
+    }
+  ]
+}
