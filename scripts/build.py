@@ -34,13 +34,19 @@ def format_number(amount):
 def render_table(ranking, anchor, title):
     table_rows = []
     for row in ranking["top"]:
+        source = "—"
+        if row.get("source"):
+            source = f'<a href="{escape(row["source"], quote=True)}">{escape(row["source_label"])}</a>'
+        published = escape(row.get("published_on") or "Chưa rõ")
+        status = " <small>(kỳ trước, chưa xác minh lại)</small>" if row.get("prior") else ""
         table_rows.append(
             f'<tr><td class="rank">{row["rank"]:02d}</td>'
-            f'<th scope="row">{escape(row["name"])}</th>'
+            f'<th scope="row">{escape(row["name"])}{status}</th>'
             f'<td>{escape(row["place"])}</td>'
             f'<td class="high">{format_number(row["high"])}</td>'
             f'<td class="amount">{format_number(row["mean"])}</td>'
-            f'<td class="amount">{format_number(row["low"])}</td></tr>'
+            f'<td class="amount">{format_number(row["low"])}</td>'
+            f'<td>{source}</td><td>{published}</td></tr>'
         )
     rows = "\n".join(table_rows)
     return f"""
@@ -55,6 +61,7 @@ def render_table(ranking, anchor, title):
         <th scope="col">Hạng</th><th scope="col">Doanh nghiệp</th>
         <th scope="col">Phường/xã báo cáo</th><th scope="col">Cao nhất</th>
         <th scope="col">Bình quân</th><th scope="col">Thấp nhất</th>
+        <th scope="col">Nguồn</th><th scope="col">Ngày công bố</th>
       </tr></thead>
       <tbody>{rows}</tbody>
     </table>
@@ -69,6 +76,8 @@ def render_site(report, output):
     timestamp = datetime.fromisoformat(report["checked_at"])
     checked_at = timestamp.astimezone(ZoneInfo("Asia/Ho_Chi_Minh"))
     scope = []
+    if report.get("coverage_note"):
+        scope.append(report["coverage_note"])
     if report["blocked"]:
         unavailable = ", ".join(report["blocked"])
         scope.append(f"Nguồn báo cáo chưa truy cập được tại {unavailable}.")
@@ -86,6 +95,7 @@ def render_site(report, output):
         sections="\n".join(sections),
         scope=f'<p class="scope">{escape(" ".join(scope))}</p>' if scope else "",
         directory=escape(report["directory"], quote=True),
+        directory_hub=escape(report.get("directory_hub") or report["directory"], quote=True),
     )
     output.mkdir(parents=True, exist_ok=True)
     (output / "index.html").write_text(page, encoding="utf-8")
