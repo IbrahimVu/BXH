@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Xếp hạng mức thưởng dự kiến dịp Tết Nguyên đán và Tết Dương lịch 2027 của các doanh nghiệp tại Hà Nội.">
   <title>Bảng xếp hạng thưởng Tết 2027 tại Hà Nội</title>
-  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./style.css?v=$style_version">
+  <script src="./rankings.js?v=$script_version" defer></script>
 </head>
 <body>
   <header class="hero">
@@ -15,16 +16,30 @@
         <p class="intro">Xếp hạng doanh nghiệp theo mức thưởng dự kiến cao nhất, tính bằng triệu đồng/người.</p>
         <p class="timestamp">Dữ liệu lúc <time datetime="$iso_timestamp">$last_checked</time> (giờ Việt Nam)</p>
       </div>
-      <nav aria-label="Chọn dịp Tết">
+      <nav class="occasion-tabs" aria-label="Dịp Tết">
         <a href="#nguyen-dan">Tết Nguyên đán</a>
         <a href="#duong-lich">Tết Dương lịch</a>
       </nav>
     </div>
   </header>
   <main class="container">
+    <form class="filters" aria-label="Lọc bảng xếp hạng" hidden>
+      <label>Doanh nghiệp
+        <input type="search" name="company" placeholder="Nhập tên doanh nghiệp">
+      </label>
+      <label><span id="place-label">Phường/xã</span>
+        <select name="place" aria-labelledby="place-label"><option value="">Tất cả địa bàn</option></select>
+      </label>
+      <label>Thưởng cao nhất từ
+        <input type="text" name="minimum" inputmode="decimal" placeholder="Triệu đồng/người" aria-describedby="minimum-error">
+      </label>
+      <button type="reset">Xóa bộ lọc</button>
+      <p id="minimum-error" class="filter-error" hidden>Nhập một số từ 0 trở lên, ví dụ 12,5.</p>
+    </form>
+    <noscript><p>Bật JavaScript để lọc và xem các trang tiếp theo của bảng xếp hạng.</p></noscript>
     $sections
     <footer>
-      <p>Bảng hiển thị đến hạng 20 của mỗi dịp, kể cả các doanh nghiệp đồng hạng. Dấu — biểu thị nguồn thiếu số liệu. Phạm vi thống kê dựa trên các báo cáo đã đọc được.</p>
+      <p>Mỗi dịp có 30 doanh nghiệp mỗi trang. Hạng được tính trên toàn bộ dữ liệu đủ điều kiện của dịp đó. Dấu — biểu thị nguồn thiếu số liệu. Phạm vi thống kê dựa trên các báo cáo đã đọc được.</p>
       $scope
       <p><a href="$directory">Danh mục báo cáo của các phường, xã</a> · <a href="$directory_hub">Danh mục báo cáo theo tỉnh, thành</a></p>
     </footer>

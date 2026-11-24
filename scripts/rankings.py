@@ -197,21 +197,19 @@ def site_rankings(config, tables, checked_at, blocked=(), new_sources=(), direct
                 continue
             ranked.append((values[1], normalized(first["name"]), first, values))
         ranked.sort(key=lambda record: (-record[0], record[1]))
-        top = []
+        ranked_rows = []
         previous = None
         rank = 0
         for position, (highest, _, record, values) in enumerate(ranked, 1):
             if highest != previous:
                 rank = position
-            if rank > 20:
-                break
             mean, high, low = (float(amount / 1_000_000) if amount is not None else None for amount in values)
-            top.append(dict(
+            ranked_rows.append(dict(
                 rank=rank, name=record["name"], place=record["place"], high=high, mean=mean, low=low,
                 source=source_urls[record["source"]], source_label=f'{record["tab"]}, dòng {record["row"]}',
             ))
             previous = highest
-        rankings[occasion] = {"total": len(ranked), "top": top}
+        rankings[occasion] = {"total": len(ranked_rows), "rows": ranked_rows}
     return {
         "checked_at": checked_at,
         "rankings": rankings,

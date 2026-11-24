@@ -1,0 +1,158 @@
+const tabList = document.querySelector(".occasion-tabs");
+const tabs = Array.from(tabList.querySelectorAll("a"));
+const form = document.querySelector(".filters");
+const company = form.elements.namedItem("company");
+const place = form.elements.namedItem("place");
+const minimum = form.elements.namedItem("minimum");
+const minimumError = document.querySelector("#minimum-error");
+
+function searchText(value) {
+  return value.toLocaleLowerCase("vi").normalize("NFD")
+    .replace(/\p{M}/gu, "").replace(/đ/g, "d").trim();
+}
+
+function placeKey(value) {
+  const key = searchText(value).replace(/[^a-z0-9]/g, "");
+  return key.replace(/(?:thanhpho|tp)?hanoi$/, "") || key;
+}
+
+const countFormat = new Intl.NumberFormat("vi-VN");
+const panels = tabs.map((tab) => {
+  const panel = document.getElementById(tab.hash.slice(1));
+  const body = panel.querySelector("tbody");
+  const remaining = panel.querySelector(".remaining-rows");
+  const labels = new Map();
+  const rows = [...body.rows, ...remaining.content.querySelectorAll("tr")].map((element) => {
+    const names = element.querySelector(".company-place").textContent.split(/\s+\/\s+/);
+    const places = [];
+    for (const name of names) {
+      const key = placeKey(name);
+      if (!key) continue;
+      places.push(key);
+      const label = name.trim().replace(/^\p{Ll}/u, (letter) => letter.toLocaleUpperCase("vi"));
+      if (!labels.has(key) || label.length < labels.get(key).length) labels.set(key, label);
+    }
+    return { element, name: searchText(element.querySelector(".company-name").textContent), places, high: Number(element.dataset.high) };
+  });
+  return {
+    panel,
+    rows,
+    places: [...labels].sort((a, b) => a[1].localeCompare(b[1], "vi")),
+    count: panel.querySelector(".filter-count"),
+    table: panel.querySelector(".table-wrap"),
+    body,
+    pageSize: Number(panel.dataset.pageSize),
+    pagination: panel.querySelector(".pagination"),
+    previous: panel.querySelector(".previous-page"),
+    next: panel.querySelector(".next-page"),
+    pageNumber: panel.querySelector(".page-number"),
+    matches: [],
+  };
+});
+
+let activeIndex;
+
+function showPage(state, page) {
+  const { body, count, table, matches, pageSize, pagination, previous, next, pageNumber } = state;
+  const pages = Math.ceil(matches.length / pageSize);
+  const start = (page - 1) * pageSize;
+  const visible = matches.slice(start, start + pageSize);
+  body.replaceChildren(...visible.map((row) => row.element));
+  count.textContent = visible.length
+    ? `Hiển thị ${countFormat.format(start + 1)}–${countFormat.format(start + visible.length)} trong ${countFormat.format(matches.length)} kết quả.`
+    : "Không tìm thấy doanh nghiệp phù hợp.";
+  count.hidden = false;
+  table.hidden = visible.length === 0;
+  pagination.hidden = pages <= 1;
+  if (pageNumber.options.length !== pages) {
+    pageNumber.replaceChildren(...Array.from({ length: pages }, (_, index) =>
+      new Option(`${index + 1} / ${pages}`, index + 1)));
+  }
+  pageNumber.value = String(page);
+  previous.disabled = page <= 1;
+  next.disabled = page >= pages;
+}
+
+function filterRows() {
+  const state = panels[activeIndex];
+  const query = searchText(company.value);
+  const input = minimum.value.trim();
+  const valid = input === "" || /^\d+(?:[.,]\d+)?$/.test(input);
+  const threshold = valid ? Number(input.replace(",", ".")) : 0;
+  minimumError.hidden = valid;
+  minimum.setAttribute("aria-invalid", String(!valid));
+
+  state.matches = state.rows.filter((row) => row.name.includes(query)
+    && (place.value === "" || row.places.includes(place.value))
+    && row.high >= threshold);
+  showPage(state, 1);
+}
+
+function activate(index, updateUrl = false) {
+  activeIndex = index;
+  tabs.forEach((tab, position) => {
+    const selected = position === index;
+    tab.setAttribute("aria-selected", String(selected));
+    tab.tabIndex = selected ? 0 : -1;
+    panels[position].panel.hidden = !selected;
+  });
+
+  const previousPlace = place.value;
+  const options = panels[index].places.map(([key, label]) => new Option(label, key));
+  place.replaceChildren(new Option("Tất cả địa bàn", ""), ...options);
+  if (panels[index].places.some(([key]) => key === previousPlace)) place.value = previousPlace;
+  filterRows();
+
+  const hash = tabs[index].hash;
+  if (updateUrl && location.hash !== hash) history.pushState(null, "", hash);
+}
+
+function activateFromHash() {
+  const index = tabs.findIndex((tab) => tab.hash === location.hash);
+  activate(index === -1 ? 0 : index);
+}
+
+tabList.setAttribute("role", "tablist");
+tabs.forEach((tab, index) => {
+  const state = panels[index];
+  const { panel, previous, next, pageNumber } = state;
+  tab.id = `tab-${panel.id}`;
+  tab.setAttribute("role", "tab");
+  tab.setAttribute("aria-controls", panel.id);
+  panel.setAttribute("role", "tabpanel");
+  panel.setAttribute("aria-labelledby", tab.id);
+  tab.addEventListener("click", (event) => {
+    event.preventDefault();
+    activate(index, true);
+  });
+  tab.addEventListener("keydown", (event) => {
+    let next;
+    switch (event.key) {
+      case "ArrowRight": next = (index + 1) % tabs.length; break;
+      case "ArrowLeft": next = (index + tabs.length - 1) % tabs.length; break;
+      case "Home": next = 0; break;
+      case "End": next = tabs.length - 1; break;
+      case " ": next = index; break;
+      default: return;
+    }
+    event.preventDefault();
+    activate(next, true);
+    tabs[next].focus();
+  });
+  previous.addEventListener("click", () => showPage(state, Number(pageNumber.value) - 1));
+  next.addEventListener("click", () => showPage(state, Number(pageNumber.value) + 1));
+  pageNumber.addEventListener("change", () => showPage(state, Number(pageNumber.value)));
+});
+
+form.addEventListener("input", filterRows);
+form.addEventListener("submit", (event) => event.preventDefault());
+form.addEventListener("reset", (event) => {
+  event.preventDefault();
+  company.value = "";
+  place.value = "";
+  minimum.value = "";
+  filterRows();
+});
+window.addEventListener("hashchange", activateFromHash);
+activateFromHash();
+form.hidden = false;
