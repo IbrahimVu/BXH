@@ -55,31 +55,33 @@ const panels = tabs.map((tab) => {
 });
 
 let activeIndex;
-function searchableFilter(id, normalize, allLabel, filterWhileTyping = false) {
+function searchableFilter(id, normalize, allLabel, choices) {
   const input = document.getElementById(id);
   const menu = input.parentElement.querySelector(".filter-menu");
   const options = menu.querySelector('[role="listbox"]');
   const empty = menu.querySelector(".filter-empty");
-  let choices = [];
-  let selection = ["", ""];
+  const labels = new Map(choices);
+  const selected = new Set();
   let highlighted = -1;
 
   function close() {
     menu.hidden = true;
     input.setAttribute("aria-expanded", "false");
     input.removeAttribute("aria-activedescendant");
-    if (!filterWhileTyping) input.value = selection[1];
+    const selectedLabels = [...selected].map((key) => labels.get(key));
+    input.value = selectedLabels.length > 1 ? `Đã chọn ${selectedLabels.length} mục` : selectedLabels[0] ?? "";
+    input.title = selectedLabels.join(", ");
   }
 
   function highlight(index, scroll = true) {
-    options.children[highlighted]?.setAttribute("aria-selected", "false");
+    options.children[highlighted]?.removeAttribute("data-active");
     highlighted = index;
     const option = options.children[index];
     if (!option) {
       input.removeAttribute("aria-activedescendant");
       return;
     }
-    option.setAttribute("aria-selected", "true");
+    option.setAttribute("data-active", "");
     input.setAttribute("aria-activedescendant", option.id);
     if (scroll) option.scrollIntoView({ block: "nearest" });
   }
@@ -87,13 +89,16 @@ function searchableFilter(id, normalize, allLabel, filterWhileTyping = false) {
   function open(value = "") {
     const query = normalize(value);
     const matches = choices.filter(([key]) => key.includes(query));
-    if (!query) matches.unshift(["", allLabel]);
+    if (!query) {
+      matches.sort(([a], [b]) => Number(selected.has(b)) - Number(selected.has(a)));
+      matches.unshift(["", allLabel]);
+    }
     options.replaceChildren(...matches.map(([key, label], index) => {
       const option = document.createElement("li");
       option.id = `${options.id}-${index}`;
       option.dataset.key = key;
       option.setAttribute("role", "option");
-      option.setAttribute("aria-selected", "false");
+      option.setAttribute("aria-selected", String(key ? selected.has(key) : selected.size === 0));
       option.textContent = label;
       return option;
     }));
@@ -106,19 +111,25 @@ function searchableFilter(id, normalize, allLabel, filterWhileTyping = false) {
   }
 
   function choose(option) {
-    selection = [option.dataset.key, option.dataset.key ? option.textContent : ""];
-    input.value = selection[1];
-    close();
+    const key = option.dataset.key;
+    if (!key) selected.clear();
+    else if (selected.has(key)) selected.delete(key);
+    else selected.add(key);
+
+    for (const item of options.children) {
+      const itemKey = item.dataset.key;
+      item.setAttribute("aria-selected", String(itemKey ? selected.has(itemKey) : selected.size === 0));
+    }
+    input.select();
     filterRows();
   }
 
   function edit() {
     open(input.value);
-    if (filterWhileTyping) filterRows();
   }
 
   function openAll() {
-    input.select();
+    input.value = "";
     open();
   }
 
@@ -135,7 +146,7 @@ function searchableFilter(id, normalize, allLabel, filterWhileTyping = false) {
     if (event.isComposing) return;
     if (event.key === "ArrowDown" || event.key === "ArrowUp") {
       event.preventDefault();
-      if (menu.hidden) open();
+      if (menu.hidden) openAll();
       const count = options.children.length;
       if (!count) return;
       const step = event.key === "ArrowDown" ? 1 : -1;
@@ -159,22 +170,21 @@ function searchableFilter(id, normalize, allLabel, filterWhileTyping = false) {
   });
 
   return {
-    get value() { return filterWhileTyping ? normalize(input.value) : selection[0]; },
-    setChoices(values) {
-      choices = values;
-      selection = choices.find(([key]) => key === selection[0]) ?? ["", ""];
-      close();
-    },
+    selected,
     reset() {
-      selection = ["", ""];
-      input.value = "";
+      selected.clear();
       close();
     },
   };
 }
 
-const place = searchableFilter("place-search", placeKey, "Tất cả địa bàn");
-const industry = searchableFilter("industry-search", searchText, "Tất cả ngành/lĩnh vực", true);
+function allChoices(field) {
+  return [...new Map(panels.flatMap((panel) => panel[field]))]
+    .sort((a, b) => a[1].localeCompare(b[1], "vi"));
+}
+
+const place = searchableFilter("place-search", placeKey, "Tất cả địa bàn", allChoices("places"));
+const industry = searchableFilter("industry-search", searchText, "Tất cả ngành/lĩnh vực", allChoices("industries"));
 
 function showPage(state, page) {
   const { body, count, table, matches, pageSize, pagination, previous, next, pageNumber } = state;
@@ -201,7 +211,8 @@ function showPage(state, page) {
 function filterRows() {
   const state = panels[activeIndex];
   const query = searchText(company.value);
-  const industryQuery = industry.value;
+  const places = place.selected;
+  const industries = industry.selected;
   const input = minimum.value.trim();
   const valid = input === "" || /^\d+(?:[.,]\d+)?$/.test(input);
   const threshold = valid ? Number(input.replace(",", ".")) : 0;
@@ -209,8 +220,8 @@ function filterRows() {
   minimum.setAttribute("aria-invalid", String(!valid));
 
   state.matches = state.rows.filter((row) => row.name.includes(query)
-    && (place.value === "" || row.places.includes(place.value))
-    && row.industry.includes(industryQuery)
+    && (!places.size || row.places.some((key) => places.has(key)))
+    && (!industries.size || industries.has(row.industry))
     && row.high >= threshold);
   showPage(state, 1);
 }
@@ -224,8 +235,6 @@ function activate(index, updateUrl = false) {
     panels[position].panel.hidden = !selected;
   });
 
-  place.setChoices(panels[index].places);
-  industry.setChoices(panels[index].industries);
   filterRows();
 
   const hash = tabs[index].hash;
