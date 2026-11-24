@@ -123,7 +123,7 @@ def header_digest(rows, first_row):
     return hashlib.sha256(json.dumps(markers).encode("utf-8")).hexdigest()
 
 
-def read_export(body, kind, layouts):
+def read_export(body, kind, layouts, industry_layouts=()):
     if kind == "document":
         if body.lstrip().startswith(b"<"):
             raise ValueError("Google Docs export returned HTML")
@@ -146,6 +146,19 @@ def read_export(body, kind, layouts):
             if header_digest(rows, layout["first_row"]) != layout["header_sha256"]:
                 raise ValueError(f"report layout changed: {tab}")
             tables[tab] = rows
+        for layout in industry_layouts:
+            tab = layout["tab"]
+            if tab not in workbook.sheetnames:
+                continue
+            rows = list(workbook[tab].values)
+            try:
+                digest = header_digest(rows, layout["first_row"])
+            except ValueError:
+                digest = None
+            if digest == layout["header_sha256"]:
+                tables[tab] = rows
+            else:
+                print(f"Industry reference layout changed: {tab}")
         return tables
     finally:
         workbook.close()
@@ -188,6 +201,9 @@ def crawl(config):
     layouts_by_source = {}
     for layout in config["layouts"]:
         layouts_by_source.setdefault(layout["source"], []).append(layout)
+    industry_by_source = {}
+    for layout in config.get("industry_layouts", ()):
+        industry_by_source.setdefault(layout["source"], []).append(layout)
 
     def fetch_source(source):
         source_id = source["id"]
@@ -196,7 +212,7 @@ def crawl(config):
         url = f"https://{GOOGLE_HOST}/{kind}/d/{identifier}/export?format={export_format}"
         try:
             body = download(url, GOOGLE_HOST)
-            tables = read_export(body, kind, layouts_by_source[source_id])
+            tables = read_export(body, kind, layouts_by_source[source_id], industry_by_source.get(source_id, ()))
         except HTTPError as exc:
             if exc.code in (401, 403, 404, 410):
                 return source_id, {}, source["place"]

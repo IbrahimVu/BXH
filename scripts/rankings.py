@@ -64,10 +64,40 @@ def industry_text(value):
         return None
     label = " ".join(value.split())
     if (not any(char.isalpha() for char in label)
-        or normalized(label) in {"na", "khong", "chuaro", "chuacothongtin"}
+        or normalized(label) in {"na", "x", "co", "khong", "chuaro", "chuacothongtin"}
         or re.search(r"@|\b0(?:[ .-]?\d){9,10}\b", label)):
         return None
     return label
+
+
+def tax_number(value):
+    tax = re.sub(r"[.\s]", "", as_text(value))
+    return tax.replace("-", "") if re.fullmatch(r"\d{10}(?:-?\d{3})?", tax) else ""
+
+
+def industry_references(config, tables):
+    candidates = defaultdict(dict)
+    for layout in config.get("industry_layouts", ()):
+        source, tab, start = layout["source"], layout["tab"], layout["first_row"]
+        rows = tables.get(source, {}).get(tab, ())
+        if len(rows) < start or any(
+            normalized(cell(rows[row - 1], column)) != normalized(label)
+            for row, column, label in layout["headers"]
+        ):
+            continue
+        for row_number, row in enumerate(rows[start - 1:], start):
+            name = normalized(cell(row, layout["name"]))
+            tax = tax_number(cell(row, layout["tax"]))
+            if not name or (layout["tax"] is not None and not tax):
+                continue
+            label = industry_text(cell(row, layout["industry"]))
+            if not label:
+                flags = [name for column, name in layout.get("flags", ())
+                         if normalized(cell(row, column)) in {"1", "x", "co"}]
+                label = flags[0] if len(flags) == 1 else None
+            if label:
+                candidates[source, name, tax][normalized(label)] = (label, f"{tab}, dòng {row_number}")
+    return {key: next(iter(values.values())) for key, values in candidates.items() if len(values) == 1}
 
 
 def number(value):
@@ -175,10 +205,10 @@ def company_records(config, tables):
                 or re.fullmatch(r"công ty[.\s]+", name, re.IGNORECASE)
             ):
                 continue
-            tax = re.sub(r"[.\s]", "", as_text(cell(row, columns["tax"])))
+            tax = tax_number(cell(row, columns["tax"]))
             address = normalized(as_text(cell(row, columns["address"])))
-            if re.fullmatch(r"\d{10}(?:-?\d{3})?", tax):
-                key = f"mst:{tax.replace('-', '')}"
+            if tax:
+                key = f"mst:{tax}"
             else:
                 key = f"name:{normalized_name}|{address}"
 
@@ -190,10 +220,15 @@ def company_records(config, tables):
                 "key": key, "identity": (normalized_name, address), "name": name,
                 "place": places[source], "source": source, "tab": tab,
                 "industry": industry_text(cell(row, industry)),
+                "industry_key": (source, normalized_name, tax),
                 "row": int(cell(row, 7)) if source == 5 else row_number,
                 "amounts": {occasion: amounts(row, layout, occasion) for occasion in OCCASIONS},
                 "generic": normalized_name in ("congty", "congtytnhh", "congtyco"),
             })
+    industries = industry_references(config, tables)
+    for record in records:
+        if not record["industry"] and record["industry_key"] in industries:
+            record["industry"], record["industry_reference"] = industries[record["industry_key"]]
     return records
 
 
@@ -239,6 +274,7 @@ def site_rankings(config, tables, checked_at, blocked=(), new_sources=(), direct
                 rank=rank, name=record["name"], place=record["place"], high=high, mean=mean, low=low,
                 source=source_urls[record["source"]], source_label=f'{record["tab"]}, dòng {record["row"]}',
                 industry=record.get("industry"),
+                industry_reference=record.get("industry_reference"),
             ))
             previous = highest
         rankings[occasion] = {"total": len(ranked_rows), "rows": ranked_rows}

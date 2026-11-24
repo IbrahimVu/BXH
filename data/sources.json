@@ -896,5 +896,118 @@
       "header_sha256": "a7571ce46e3cef6548852d19cfa265b9dd8406754c6ccf0c9c1a664ec0594f51"
     }
   ],
-  "directory_hub": "https://thuvienphapluat.vn/lao-dong-tien-luong/cap-nhat-link-nop-bao-cao-tien-luong-thuong-tet-2027-tung-tinh-thanh-ra-sao-68127.html"
+  "directory_hub": "https://thuvienphapluat.vn/lao-dong-tien-luong/cap-nhat-link-nop-bao-cao-tien-luong-thuong-tet-2027-tung-tinh-thanh-ra-sao-68127.html",
+  "industry_layouts": [
+    {
+      "source": 4,
+      "tab": "DN Nhập - Biểu 2",
+      "first_row": 5,
+      "name": 1,
+      "tax": 3,
+      "industry": 7,
+      "headers": [
+        [
+          3,
+          1,
+          "Tên doanh nghiệp"
+        ],
+        [
+          3,
+          3,
+          "Mã số thuế"
+        ],
+        [
+          3,
+          7,
+          "Ngành nghề chính"
+        ]
+      ],
+      "header_sha256": "8c4a34e005ec3eeea5aee958c2913b050b398f1c7db2f58ec9c018d636bc4a1b"
+    },
+    {
+      "source": 9,
+      "tab": "Biểu 02",
+      "first_row": 5,
+      "name": 1,
+      "tax": null,
+      "industry": 12,
+      "headers": [
+        [
+          3,
+          1,
+          "Tên doanh nghiệp"
+        ],
+        [
+          3,
+          12,
+          "Ngành nghề (Dệt may, Da dày, chế biến thuỷ sản, chế biến gỗ, khác)"
+        ]
+      ],
+      "header_sha256": "43213f42937bd79f0b7b4c43d30728c8809748d560ab091319e70f1262281612"
+    },
+    {
+      "source": 13,
+      "tab": "NỢ LƯƠNG",
+      "first_row": 6,
+      "name": 1,
+      "tax": null,
+      "industry": 10,
+      "flags": [
+        [
+          6,
+          "Dệt may"
+        ],
+        [
+          7,
+          "Da giày"
+        ],
+        [
+          8,
+          "Chế biến thủy sản"
+        ],
+        [
+          9,
+          "Chế biến gỗ"
+        ]
+      ],
+      "headers": [
+        [
+          3,
+          1,
+          "DOANH NGHIỆP"
+        ],
+        [
+          3,
+          6,
+          "NGÀNH NGHỀ HOẠT ĐỘNG CHÍNH"
+        ],
+        [
+          4,
+          6,
+          "Dệt may"
+        ],
+        [
+          4,
+          7,
+          "Da giày"
+        ],
+        [
+          4,
+          8,
+          "Chế biến thủy sản"
+        ],
+        [
+          4,
+          9,
+          "Chế biến gỗ"
+        ],
+        [
+          4,
+          10,
+          "Khác"
+        ]
+      ],
+      "header_sha256": "c0a48caf7cee40d2bad5a74d0491190c4faa4e367b299d29ad30d72162c32ca4"
+    }
+  ]
 }

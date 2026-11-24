@@ -51,11 +51,13 @@ def render_table(ranking, anchor, title):
             source = f'<a href="{escape(row["source"], quote=True)}">{escape(row["source_label"])}</a>'
         published = escape(row.get("published_on") or "Chưa rõ")
         status = " <small>(kỳ trước, chưa xác minh lại)</small>" if row.get("prior") else ""
+        industry_note = row.get("industry_reference")
+        industry_title = f' title="{escape(industry_note, quote=True)}"' if industry_note else ""
         table_rows.append(
             f'<tr data-high="{row["high"]}"><td class="rank">{row["rank"]:02d}</td>'
             f'<th scope="row"><span class="company-name">{escape(public_company_name(row["name"]))}</span>{status}</th>'
             f'<td class="company-place">{escape(row["place"])}</td>'
-            f'<td class="company-industry">{escape(row.get("industry") or "Chưa rõ")}</td>'
+            f'<td class="company-industry"{industry_title}>{escape(row.get("industry") or "Chưa rõ")}</td>'
             f'<td class="high">{format_number(row["high"])}</td>'
             f'<td class="amount">{format_number(row["mean"])}</td>'
             f'<td class="amount">{format_number(row["low"])}</td>'

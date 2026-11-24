@@ -2,12 +2,6 @@ const tabList = document.querySelector(".occasion-tabs");
 const tabs = Array.from(tabList.querySelectorAll("a"));
 const form = document.querySelector(".filters");
 const company = form.elements.namedItem("company");
-const industry = form.elements.namedItem("industry");
-const industrySuggestions = document.querySelector("#industry-suggestions");
-const place = document.querySelector("#place-search");
-const placeMenu = document.querySelector(".place-menu");
-const placeOptions = document.querySelector("#place-options");
-const placeEmpty = document.querySelector(".place-empty");
 const minimum = form.elements.namedItem("minimum");
 const minimumError = document.querySelector("#minimum-error");
 
@@ -47,7 +41,7 @@ const panels = tabs.map((tab) => {
     panel,
     rows,
     places: [...labels].sort((a, b) => a[1].localeCompare(b[1], "vi")),
-    industries: [...industries.values()].sort((a, b) => a.localeCompare(b, "vi")),
+    industries: [...industries].sort((a, b) => a[1].localeCompare(b[1], "vi")),
     count: panel.querySelector(".filter-count"),
     table: panel.querySelector(".table-wrap"),
     body,
@@ -61,57 +55,126 @@ const panels = tabs.map((tab) => {
 });
 
 let activeIndex;
-let selectedPlace = "";
-let selectedPlaceLabel = "";
-let highlightedPlace = -1;
+function searchableFilter(id, normalize, allLabel, filterWhileTyping = false) {
+  const input = document.getElementById(id);
+  const menu = input.parentElement.querySelector(".filter-menu");
+  const options = menu.querySelector('[role="listbox"]');
+  const empty = menu.querySelector(".filter-empty");
+  let choices = [];
+  let selection = ["", ""];
+  let highlighted = -1;
 
-function closePlaceMenu() {
-  placeMenu.hidden = true;
-  place.setAttribute("aria-expanded", "false");
-  place.removeAttribute("aria-activedescendant");
-  place.value = selectedPlaceLabel;
-}
-
-function highlightPlace(index, scroll = true) {
-  placeOptions.children[highlightedPlace]?.setAttribute("aria-selected", "false");
-  highlightedPlace = index;
-  const option = placeOptions.children[index];
-  if (!option) {
-    place.removeAttribute("aria-activedescendant");
-    return;
+  function close() {
+    menu.hidden = true;
+    input.setAttribute("aria-expanded", "false");
+    input.removeAttribute("aria-activedescendant");
+    if (!filterWhileTyping) input.value = selection[1];
   }
-  option.setAttribute("aria-selected", "true");
-  place.setAttribute("aria-activedescendant", option.id);
-  if (scroll) option.scrollIntoView({ block: "nearest" });
+
+  function highlight(index, scroll = true) {
+    options.children[highlighted]?.setAttribute("aria-selected", "false");
+    highlighted = index;
+    const option = options.children[index];
+    if (!option) {
+      input.removeAttribute("aria-activedescendant");
+      return;
+    }
+    option.setAttribute("aria-selected", "true");
+    input.setAttribute("aria-activedescendant", option.id);
+    if (scroll) option.scrollIntoView({ block: "nearest" });
+  }
+
+  function open(value = "") {
+    const query = normalize(value);
+    const matches = choices.filter(([key]) => key.includes(query));
+    if (!query) matches.unshift(["", allLabel]);
+    options.replaceChildren(...matches.map(([key, label], index) => {
+      const option = document.createElement("li");
+      option.id = `${options.id}-${index}`;
+      option.dataset.key = key;
+      option.setAttribute("role", "option");
+      option.setAttribute("aria-selected", "false");
+      option.textContent = label;
+      return option;
+    }));
+    empty.hidden = matches.length > 0;
+    menu.hidden = false;
+    menu.scrollTop = 0;
+    input.setAttribute("aria-expanded", "true");
+    highlighted = -1;
+    highlight(query && matches.length ? 0 : -1, false);
+  }
+
+  function choose(option) {
+    selection = [option.dataset.key, option.dataset.key ? option.textContent : ""];
+    input.value = selection[1];
+    close();
+    filterRows();
+  }
+
+  function edit() {
+    open(input.value);
+    if (filterWhileTyping) filterRows();
+  }
+
+  function openAll() {
+    input.select();
+    open();
+  }
+
+  input.addEventListener("focus", openAll);
+  input.addEventListener("click", () => {
+    if (menu.hidden) openAll();
+  });
+  input.addEventListener("input", (event) => {
+    if (!event.isComposing) edit();
+  });
+  input.addEventListener("compositionend", edit);
+  input.addEventListener("blur", close);
+  input.addEventListener("keydown", (event) => {
+    if (event.isComposing) return;
+    if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+      event.preventDefault();
+      if (menu.hidden) open();
+      const count = options.children.length;
+      if (!count) return;
+      const step = event.key === "ArrowDown" ? 1 : -1;
+      const index = highlighted < 0 ? (step > 0 ? 0 : count - 1) : highlighted + step;
+      highlight(Math.max(0, Math.min(count - 1, index)));
+    } else if (event.key === "Enter" && !menu.hidden) {
+      event.preventDefault();
+      const option = options.children[highlighted];
+      if (option) choose(option);
+    } else if (event.key === "Escape" && !menu.hidden) {
+      event.preventDefault();
+      close();
+    }
+  });
+  options.addEventListener("pointerdown", (event) => {
+    if (event.target.closest('[role="option"]')) event.preventDefault();
+  });
+  options.addEventListener("click", (event) => {
+    const option = event.target.closest('[role="option"]');
+    if (option) choose(option);
+  });
+
+  return {
+    get value() { return filterWhileTyping ? normalize(input.value) : selection[0]; },
+    setChoices(values) {
+      choices = values;
+      selection = choices.find(([key]) => key === selection[0]) ?? ["", ""];
+      close();
+    },
+    reset() {
+      selection = ["", ""];
+      input.value = "";
+      close();
+    },
+  };
 }
 
-function searchPlaces(value = "") {
-  const query = placeKey(value);
-  const choices = panels[activeIndex].places.filter(([key]) => key.includes(query));
-  if (!query) choices.unshift(["", "Tất cả địa bàn"]);
-  placeOptions.replaceChildren(...choices.map(([key, label], index) => {
-    const option = document.createElement("li");
-    option.id = `place-option-${index}`;
-    option.dataset.key = key;
-    option.setAttribute("role", "option");
-    option.setAttribute("aria-selected", "false");
-    option.textContent = label;
-    return option;
-  }));
-  placeEmpty.hidden = choices.length > 0;
-  placeMenu.hidden = false;
-  placeMenu.scrollTop = 0;
-  place.setAttribute("aria-expanded", "true");
-  highlightedPlace = -1;
-  highlightPlace(query && choices.length ? 0 : -1, false);
-}
-
-function choosePlace(option) {
-  selectedPlace = option.dataset.key;
-  selectedPlaceLabel = selectedPlace ? option.textContent : "";
-  closePlaceMenu();
-  filterRows();
-}
+const place = searchableFilter("place-search", placeKey, "Tất cả địa bàn");
+const industry = searchableFilter("industry-search", searchText, "Tất cả ngành/lĩnh vực", true);
 
 function showPage(state, page) {
   const { body, count, table, matches, pageSize, pagination, previous, next, pageNumber } = state;
@@ -138,7 +201,7 @@ function showPage(state, page) {
 function filterRows() {
   const state = panels[activeIndex];
   const query = searchText(company.value);
-  const industryQuery = searchText(industry.value);
+  const industryQuery = industry.value;
   const input = minimum.value.trim();
   const valid = input === "" || /^\d+(?:[.,]\d+)?$/.test(input);
   const threshold = valid ? Number(input.replace(",", ".")) : 0;
@@ -146,7 +209,7 @@ function filterRows() {
   minimum.setAttribute("aria-invalid", String(!valid));
 
   state.matches = state.rows.filter((row) => row.name.includes(query)
-    && (selectedPlace === "" || row.places.includes(selectedPlace))
+    && (place.value === "" || row.places.includes(place.value))
     && row.industry.includes(industryQuery)
     && row.high >= threshold);
   showPage(state, 1);
@@ -161,10 +224,8 @@ function activate(index, updateUrl = false) {
     panels[position].panel.hidden = !selected;
   });
 
-  const selection = panels[index].places.find(([key]) => key === selectedPlace);
-  [selectedPlace, selectedPlaceLabel] = selection ?? ["", ""];
-  industrySuggestions.replaceChildren(...panels[index].industries.map((label) => new Option(label, label)));
-  closePlaceMenu();
+  place.setChoices(panels[index].places);
+  industry.setChoices(panels[index].industries);
   filterRows();
 
   const hash = tabs[index].hash;
@@ -208,61 +269,14 @@ tabs.forEach((tab, index) => {
   pageNumber.addEventListener("change", () => showPage(state, Number(pageNumber.value)));
 });
 
-place.addEventListener("focus", () => {
-  place.select();
-  searchPlaces();
-});
-place.addEventListener("click", () => {
-  if (placeMenu.hidden) {
-    place.select();
-    searchPlaces();
-  }
-});
-place.addEventListener("input", (event) => {
-  if (!event.isComposing) searchPlaces(place.value);
-});
-place.addEventListener("compositionend", () => searchPlaces(place.value));
-place.addEventListener("blur", closePlaceMenu);
-place.addEventListener("keydown", (event) => {
-  if (event.isComposing) return;
-  const { key } = event;
-  if (key === "ArrowDown" || key === "ArrowUp") {
-    event.preventDefault();
-    if (placeMenu.hidden) searchPlaces();
-    const count = placeOptions.children.length;
-    if (!count) return;
-    const index = highlightedPlace === -1
-      ? (key === "ArrowDown" ? 0 : count - 1)
-      : Math.min(count - 1, Math.max(0, highlightedPlace + (key === "ArrowDown" ? 1 : -1)));
-    highlightPlace(index);
-  } else if (key === "Enter" && !placeMenu.hidden) {
-    event.preventDefault();
-    const option = placeOptions.children[highlightedPlace];
-    if (option) choosePlace(option);
-  } else if (key === "Escape" && !placeMenu.hidden) {
-    event.preventDefault();
-    closePlaceMenu();
-  }
-});
-placeOptions.addEventListener("pointerdown", (event) => {
-  if (event.target.closest('[role="option"]')) event.preventDefault();
-});
-placeOptions.addEventListener("click", (event) => {
-  const option = event.target.closest('[role="option"]');
-  if (option) choosePlace(option);
-});
-
 company.addEventListener("input", filterRows);
-industry.addEventListener("input", filterRows);
 minimum.addEventListener("input", filterRows);
 form.addEventListener("submit", (event) => event.preventDefault());
 form.addEventListener("reset", (event) => {
   event.preventDefault();
   company.value = "";
-  industry.value = "";
-  selectedPlace = "";
-  selectedPlaceLabel = "";
-  closePlaceMenu();
+  industry.reset();
+  place.reset();
   minimum.value = "";
   filterRows();
 });

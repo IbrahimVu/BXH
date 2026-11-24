@@ -24,25 +24,32 @@
   </header>
   <main class="container results-layout">
     <form class="filters" aria-label="Lọc bảng xếp hạng" hidden>
-      <label>Doanh nghiệp
-        <input type="search" name="company" placeholder="Nhập tên doanh nghiệp">
-      </label>
-      <div class="place-filter">
+      <div class="filter-field">
+        <label for="company-search">Doanh nghiệp</label>
+        <input id="company-search" type="search" name="company" placeholder="Nhập tên doanh nghiệp">
+      </div>
+      <div class="filter-field filter-combobox">
         <label for="place-search">Phường/xã</label>
         <input id="place-search" type="text" placeholder="Tất cả địa bàn" autocomplete="off"
           role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="place-options">
-        <div class="place-menu" hidden>
+        <div class="filter-menu" hidden>
           <ul id="place-options" role="listbox" aria-label="Phường/xã"></ul>
-          <p class="place-empty" role="status" hidden>Không tìm thấy địa bàn.</p>
+          <p class="filter-empty" role="status" hidden>Không tìm thấy địa bàn.</p>
         </div>
       </div>
-      <label>Ngành/lĩnh vực
-        <input type="search" name="industry" list="industry-suggestions" placeholder="Nhập hoặc chọn ngành">
-        <datalist id="industry-suggestions"></datalist>
-      </label>
-      <label>Thưởng cao nhất từ
-        <input type="text" name="minimum" inputmode="decimal" placeholder="Triệu đồng/người" aria-describedby="minimum-error">
-      </label>
+      <div class="filter-field filter-combobox">
+        <label for="industry-search">Ngành/lĩnh vực</label>
+        <input id="industry-search" type="text" placeholder="Tất cả ngành/lĩnh vực" autocomplete="off"
+          role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="industry-options">
+        <div class="filter-menu" hidden>
+          <ul id="industry-options" role="listbox" aria-label="Ngành/lĩnh vực"></ul>
+          <p class="filter-empty" role="status" hidden>Không tìm thấy ngành/lĩnh vực.</p>
+        </div>
+      </div>
+      <div class="filter-field">
+        <label for="minimum-reward">Thưởng cao nhất từ</label>
+        <input id="minimum-reward" type="text" name="minimum" inputmode="decimal" placeholder="Triệu đồng/người" aria-describedby="minimum-error">
+      </div>
       <button type="reset">Xóa bộ lọc</button>
       <p id="minimum-error" class="filter-error" hidden>Nhập một số từ 0 trở lên, ví dụ 12,5.</p>
     </form>
@@ -52,7 +59,7 @@
       <details>
         <summary>Nguồn và phạm vi dữ liệu</summary>
         <div class="source-notes">
-          <p>Mỗi dịp có 30 doanh nghiệp mỗi trang. Hạng được tính trên toàn bộ dữ liệu đủ điều kiện của dịp đó. Dấu — biểu thị nguồn thiếu số liệu. Ngành/lĩnh vực lấy từ mục ngành nghề chính trong báo cáo, hoặc ghi Chưa rõ khi thiếu thông tin.</p>
+          <p>Mỗi dịp có 30 doanh nghiệp mỗi trang. Hạng được tính trên toàn bộ dữ liệu đủ điều kiện của dịp đó. Dấu — biểu thị nguồn thiếu số liệu. Ngành/lĩnh vực lấy từ báo cáo và các biểu phân loại doanh nghiệp, hoặc ghi Chưa rõ khi thiếu thông tin.</p>
           $scope
           <p><a href="$directory">Danh mục báo cáo của các phường, xã</a> · <a href="$directory_hub">Danh mục báo cáo theo tỉnh, thành</a></p>
         </div>
