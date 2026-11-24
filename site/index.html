@@ -27,9 +27,15 @@
       <label>Doanh nghiệp
         <input type="search" name="company" placeholder="Nhập tên doanh nghiệp">
       </label>
-      <label><span id="place-label">Phường/xã</span>
-        <select name="place" aria-labelledby="place-label"><option value="">Tất cả địa bàn</option></select>
-      </label>
+      <div class="place-filter">
+        <label for="place-search">Phường/xã</label>
+        <input id="place-search" type="text" placeholder="Tất cả địa bàn" autocomplete="off"
+          role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="place-options">
+        <div class="place-menu" hidden>
+          <ul id="place-options" role="listbox" aria-label="Phường/xã"></ul>
+          <p class="place-empty" role="status" hidden>Không tìm thấy địa bàn.</p>
+        </div>
+      </div>
       <label>Thưởng cao nhất từ
         <input type="text" name="minimum" inputmode="decimal" placeholder="Triệu đồng/người" aria-describedby="minimum-error">
       </label>

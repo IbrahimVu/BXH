@@ -2,7 +2,10 @@ const tabList = document.querySelector(".occasion-tabs");
 const tabs = Array.from(tabList.querySelectorAll("a"));
 const form = document.querySelector(".filters");
 const company = form.elements.namedItem("company");
-const place = form.elements.namedItem("place");
+const place = document.querySelector("#place-search");
+const placeMenu = document.querySelector(".place-menu");
+const placeOptions = document.querySelector("#place-options");
+const placeEmpty = document.querySelector(".place-empty");
 const minimum = form.elements.namedItem("minimum");
 const minimumError = document.querySelector("#minimum-error");
 
@@ -51,6 +54,57 @@ const panels = tabs.map((tab) => {
 });
 
 let activeIndex;
+let selectedPlace = "";
+let selectedPlaceLabel = "";
+let highlightedPlace = -1;
+
+function closePlaceMenu() {
+  placeMenu.hidden = true;
+  place.setAttribute("aria-expanded", "false");
+  place.removeAttribute("aria-activedescendant");
+  place.value = selectedPlaceLabel;
+}
+
+function highlightPlace(index, scroll = true) {
+  placeOptions.children[highlightedPlace]?.setAttribute("aria-selected", "false");
+  highlightedPlace = index;
+  const option = placeOptions.children[index];
+  if (!option) {
+    place.removeAttribute("aria-activedescendant");
+    return;
+  }
+  option.setAttribute("aria-selected", "true");
+  place.setAttribute("aria-activedescendant", option.id);
+  if (scroll) option.scrollIntoView({ block: "nearest" });
+}
+
+function searchPlaces(value = "") {
+  const query = placeKey(value);
+  const choices = panels[activeIndex].places.filter(([key]) => key.includes(query));
+  if (!query) choices.unshift(["", "Tất cả địa bàn"]);
+  placeOptions.replaceChildren(...choices.map(([key, label], index) => {
+    const option = document.createElement("li");
+    option.id = `place-option-${index}`;
+    option.dataset.key = key;
+    option.setAttribute("role", "option");
+    option.setAttribute("aria-selected", "false");
+    option.textContent = label;
+    return option;
+  }));
+  placeEmpty.hidden = choices.length > 0;
+  placeMenu.hidden = false;
+  placeMenu.scrollTop = 0;
+  place.setAttribute("aria-expanded", "true");
+  highlightedPlace = -1;
+  highlightPlace(query && choices.length ? 0 : -1, false);
+}
+
+function choosePlace(option) {
+  selectedPlace = option.dataset.key;
+  selectedPlaceLabel = selectedPlace ? option.textContent : "";
+  closePlaceMenu();
+  filterRows();
+}
 
 function showPage(state, page) {
   const { body, count, table, matches, pageSize, pagination, previous, next, pageNumber } = state;
@@ -83,7 +137,7 @@ function filterRows() {
   minimum.setAttribute("aria-invalid", String(!valid));
 
   state.matches = state.rows.filter((row) => row.name.includes(query)
-    && (place.value === "" || row.places.includes(place.value))
+    && (selectedPlace === "" || row.places.includes(selectedPlace))
     && row.high >= threshold);
   showPage(state, 1);
 }
@@ -97,10 +151,9 @@ function activate(index, updateUrl = false) {
     panels[position].panel.hidden = !selected;
   });
 
-  const previousPlace = place.value;
-  const options = panels[index].places.map(([key, label]) => new Option(label, key));
-  place.replaceChildren(new Option("Tất cả địa bàn", ""), ...options);
-  if (panels[index].places.some(([key]) => key === previousPlace)) place.value = previousPlace;
+  const selection = panels[index].places.find(([key]) => key === selectedPlace);
+  [selectedPlace, selectedPlaceLabel] = selection ?? ["", ""];
+  closePlaceMenu();
   filterRows();
 
   const hash = tabs[index].hash;
@@ -144,12 +197,59 @@ tabs.forEach((tab, index) => {
   pageNumber.addEventListener("change", () => showPage(state, Number(pageNumber.value)));
 });
 
-form.addEventListener("input", filterRows);
+place.addEventListener("focus", () => {
+  place.select();
+  searchPlaces();
+});
+place.addEventListener("click", () => {
+  if (placeMenu.hidden) {
+    place.select();
+    searchPlaces();
+  }
+});
+place.addEventListener("input", (event) => {
+  if (!event.isComposing) searchPlaces(place.value);
+});
+place.addEventListener("compositionend", () => searchPlaces(place.value));
+place.addEventListener("blur", closePlaceMenu);
+place.addEventListener("keydown", (event) => {
+  if (event.isComposing) return;
+  const { key } = event;
+  if (key === "ArrowDown" || key === "ArrowUp") {
+    event.preventDefault();
+    if (placeMenu.hidden) searchPlaces();
+    const count = placeOptions.children.length;
+    if (!count) return;
+    const index = highlightedPlace === -1
+      ? (key === "ArrowDown" ? 0 : count - 1)
+      : Math.min(count - 1, Math.max(0, highlightedPlace + (key === "ArrowDown" ? 1 : -1)));
+    highlightPlace(index);
+  } else if (key === "Enter" && !placeMenu.hidden) {
+    event.preventDefault();
+    const option = placeOptions.children[highlightedPlace];
+    if (option) choosePlace(option);
+  } else if (key === "Escape" && !placeMenu.hidden) {
+    event.preventDefault();
+    closePlaceMenu();
+  }
+});
+placeOptions.addEventListener("pointerdown", (event) => {
+  if (event.target.closest('[role="option"]')) event.preventDefault();
+});
+placeOptions.addEventListener("click", (event) => {
+  const option = event.target.closest('[role="option"]');
+  if (option) choosePlace(option);
+});
+
+company.addEventListener("input", filterRows);
+minimum.addEventListener("input", filterRows);
 form.addEventListener("submit", (event) => event.preventDefault());
 form.addEventListener("reset", (event) => {
   event.preventDefault();
   company.value = "";
-  place.value = "";
+  selectedPlace = "";
+  selectedPlaceLabel = "";
+  closePlaceMenu();
   minimum.value = "";
   filterRows();
 });
