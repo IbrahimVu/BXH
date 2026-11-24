@@ -112,6 +112,7 @@ function showPage(state, page) {
   const start = (page - 1) * pageSize;
   const visible = matches.slice(start, start + pageSize);
   body.replaceChildren(...visible.map((row) => row.element));
+  table.scrollTop = 0;
   count.textContent = visible.length
     ? `Hiển thị ${countFormat.format(start + 1)}–${countFormat.format(start + visible.length)} trong ${countFormat.format(matches.length)} kết quả.`
     : "Không tìm thấy doanh nghiệp phù hợp.";
@@ -256,3 +257,4 @@ form.addEventListener("reset", (event) => {
 window.addEventListener("hashchange", activateFromHash);
 activateFromHash();
 form.hidden = false;
+document.body.classList.add("results-ready");
