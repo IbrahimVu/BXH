@@ -5,6 +5,7 @@ on:
     paths:
       - '.github/workflows/pages.yml'
       - 'data/sources.json'
+      - 'data/snapshot.json'
       - 'scripts/**'
       - 'site/**'
       - 'requirements.txt'
@@ -13,7 +14,7 @@ on:
   workflow_dispatch:
     inputs:
       use_snapshot:
-        description: Dùng bản dữ liệu ngày 21/11/2026 đi kèm mã nguồn
+        description: Dùng bản dữ liệu đã đối chiếu đi kèm mã nguồn
         type: boolean
         default: false
 
@@ -40,10 +41,10 @@ jobs:
           python-version: '3.12'
       - run: python -m pip install -r requirements.txt
       - name: Crawl và dựng website
-        if: inputs.use_snapshot != true
+        if: github.event_name != 'push' && inputs.use_snapshot != true
         run: python scripts/build.py
       - name: Dựng website từ bản dữ liệu đi kèm
-        if: inputs.use_snapshot == true
+        if: github.event_name == 'push' || inputs.use_snapshot == true
         run: python scripts/build.py --snapshot
       - uses: actions/upload-pages-artifact@v4
         with:

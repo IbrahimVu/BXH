@@ -184,6 +184,7 @@ def group_records(records):
 
 def site_rankings(config, tables, checked_at, blocked=(), new_sources=(), directories_checked=None):
     grouped = group_records(company_records(config, tables))
+    source_urls = {source["id"]: source["url"] for source in config["sources"]}
     rankings = {}
     for occasion in OCCASIONS:
         ranked = []
@@ -205,7 +206,10 @@ def site_rankings(config, tables, checked_at, blocked=(), new_sources=(), direct
             if rank > 20:
                 break
             mean, high, low = (float(amount / 1_000_000) if amount is not None else None for amount in values)
-            top.append(dict(rank=rank, name=record["name"], place=record["place"], high=high, mean=mean, low=low))
+            top.append(dict(
+                rank=rank, name=record["name"], place=record["place"], high=high, mean=mean, low=low,
+                source=source_urls[record["source"]], source_label=f'{record["tab"]}, dòng {record["row"]}',
+            ))
             previous = highest
         rankings[occasion] = {"total": len(ranked), "top": top}
     return {
@@ -215,4 +219,5 @@ def site_rankings(config, tables, checked_at, blocked=(), new_sources=(), direct
         "new_sources": len(new_sources),
         "directories_checked": directories_checked,
         "directory": config["directory"][0],
+        "directory_hub": config.get("directory_hub"),
     }

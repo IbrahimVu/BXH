@@ -21,11 +21,10 @@ begin
 end;
 $$;
 
--- 11:59 và 23:59 giờ Hà Nội.
-select cron.schedule(
-  'bxh-github-pages-crawl',
-  '59 4,16 * * *',
-  $job$
+-- Tạo lịch 12:00 và 23:59 giờ Hà Nội (05:00 và 16:59 UTC).
+do $schedule$
+declare
+  dispatch_sql constant text := $job$
   select net.http_post(
     url := 'https://api.github.com/repos/IbrahimVu/BXH/actions/workflows/pages.yml/dispatches',
     headers := jsonb_build_object(
@@ -42,7 +41,11 @@ select cron.schedule(
     body := jsonb_build_object('ref', 'master'),
     timeout_milliseconds := 10000
   ) as request_id;
-  $job$
-);
+  $job$;
+begin
+  perform cron.schedule('bxh-github-pages-crawl', '59 16 * * *', dispatch_sql);
+  perform cron.schedule('bxh-github-pages-crawl-noon', '0 5 * * *', dispatch_sql);
+end;
+$schedule$;
 
 commit;

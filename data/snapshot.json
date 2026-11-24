@@ -1,32 +1,45 @@
 {
-  "checked_at": "2026-11-21T00:06:48+07:00",
+  "checked_at": "2026-11-24T00:07:10+07:00",
+  "coverage_note": "Bản kê khai ngày 24/11/2026 có bổ sung Nam Phù cùng ngày. Ngọc Hà và Đại Mỗ đang chờ xác minh đơn vị. Chưa ghi nhận mức thưởng doanh nghiệp từ công bố chính thức trong lần rà soát này.",
   "rankings": {
     "lunar": {
-      "total": 2119,
+      "total": 2362,
       "top": [
         {
           "rank": 1,
           "name": "Công ty Cổ Phần Công Nghệ Phú Thành",
           "place": "Đại Thanh",
-          "high": 500.0,
-          "mean": 80.0,
-          "low": 8.0
+          "high": 500,
+          "mean": 80,
+          "low": 8,
+          "source": "https://docs.google.com/spreadsheets/d/1lJMlB-PAtIqs0VnRswAVp1HFUqhdHcGGgJ-5LoWqUZc/edit?usp=sharing",
+          "source_label": "Trang tính1, dòng 21",
+          "published_on": null,
+          "prior": false
         },
         {
           "rank": 2,
           "name": "Công ty TNHH công nghệ công trình Sheng Huei",
           "place": "Thanh Xuân / Khương Đình",
-          "high": 470.0,
+          "high": 470,
           "mean": 44.33,
-          "low": 5.25
+          "low": 5.25,
+          "source": "https://docs.google.com/spreadsheets/u/0/d/15HedfXtyQE7Y-UIOfeLVZZLEW1P-xfhS/htmlview",
+          "source_label": "Biểu số 1, dòng 591",
+          "published_on": null,
+          "prior": false
         },
         {
           "rank": 3,
           "name": "Công ty Cổ phần thương mại Đầu tư phát triển Công Nghệ Việt",
           "place": "Láng",
-          "high": 400.0,
-          "mean": 37.0,
-          "low": 15.0
+          "high": 400,
+          "mean": 37,
+          "low": 15,
+          "source": "https://docs.google.com/spreadsheets/d/1XsjhlwtlBTX4fjodALzfMrNGtl6QOsoPQ8NnfDKUQzU/edit?usp=sharing",
+          "source_label": "DN Nhập - Biểu 1, dòng 319",
+          "published_on": null,
+          "prior": false
         },
         {
           "rank": 4,
@@ -34,39 +47,59 @@
           "place": "Kim Liên",
           "high": 397.66,
           "mean": 48.14,
-          "low": 8.3
+          "low": 8.3,
+          "source": "https://docs.google.com/spreadsheets/d/1z9z3uvxO1XQ1mcvbmexPi7bROrumB9MT/edit?gid=387306274",
+          "source_label": "TỔNG HỢP, dòng 207",
+          "published_on": null,
+          "prior": false
         },
         {
           "rank": 5,
           "name": "CÔNG TY TNHH FALINWA VIETNAM",
           "place": "Văn Miếu - Quốc Tử Giám",
-          "high": 300.0,
-          "mean": 40.0,
-          "low": 5.0
+          "high": 300,
+          "mean": 40,
+          "low": 5,
+          "source": "https://docs.google.com/spreadsheets/d/1KwGOOZz3I9GbPe2AknXOgwMBYWBsYZsT/edit?gid=1106102721",
+          "source_label": "Nhập liệu DN, dòng 157",
+          "published_on": null,
+          "prior": false
         },
         {
           "rank": 5,
           "name": "Công ty TNHH Light Decor Việt Nam",
           "place": "Hà Đông",
-          "high": 300.0,
+          "high": 300,
           "mean": 17.4,
-          "low": 5.0
+          "low": 5,
+          "source": "https://docs.google.com/spreadsheets/d/1xoq3XbWfWCBP-10Cvh-cmsc3VBcayL-b/edit?gid=1451800128",
+          "source_label": "Biểu mẫu 2, dòng 523",
+          "published_on": null,
+          "prior": false
         },
         {
           "rank": 7,
           "name": "Công ty CP Dinh dưỡng Nutricare",
           "place": "Hà Đông",
-          "high": 280.0,
-          "mean": 16.0,
-          "low": 1.0
+          "high": 280,
+          "mean": 16,
+          "low": 1,
+          "source": "https://docs.google.com/spreadsheets/d/1xoq3XbWfWCBP-10Cvh-cmsc3VBcayL-b/edit?gid=1451800128",
+          "source_label": "Biểu mẫu 2, dòng 315",
+          "published_on": null,
+          "prior": false
         },
         {
           "rank": 8,
           "name": "Công ty TNHH Kamigumi Việt Nam - chi nhánh Hà Nội",
           "place": "Láng",
-          "high": 272.0,
+          "high": 272,
           "mean": 97.6,
-          "low": null
+          "low": null,
+          "source": "https://docs.google.com/spreadsheets/d/1XsjhlwtlBTX4fjodALzfMrNGtl6QOsoPQ8NnfDKUQzU/edit?usp=sharing",
+          "source_label": "DN Nhập - Biểu 1, dòng 358",
+          "published_on": null,
+          "prior": false
         },
         {
           "rank": 9,
@@ -74,148 +107,208 @@
           "place": "Từ Liêm",
           "high": 168.57,
           "mean": 22.986,
-          "low": 7.9
+          "low": 7.9,
+          "source": "https://docs.google.com/spreadsheets/d/1as2XK_DiLfSPOFnvT15AXpvyEBqvgtU2DkhcezrGsII/edit",
+          "source_label": "Biểu 1, dòng 189",
+          "published_on": null,
+          "prior": false
         },
         {
           "rank": 10,
           "name": "CÔNG TY CỔ PHẦN THIỆP NỔI VÀ THỦ CÔNG MỸ NGHỆ VIỆT NAM",
           "place": "Hà Đông",
-          "high": 160.0,
-          "mean": 19.0,
-          "low": 3.7
+          "high": 160,
+          "mean": 19,
+          "low": 3.7,
+          "source": "https://docs.google.com/spreadsheets/d/1xoq3XbWfWCBP-10Cvh-cmsc3VBcayL-b/edit?gid=1451800128",
+          "source_label": "Biểu mẫu 2, dòng 218",
+          "published_on": null,
+          "prior": false
         },
         {
           "rank": 11,
           "name": "Công ty cổ phần Nhật Nam",
           "place": "Hà Đông",
-          "high": 150.0,
-          "mean": 50.0,
-          "low": 20.0
+          "high": 150,
+          "mean": 50,
+          "low": 20,
+          "source": "https://docs.google.com/spreadsheets/d/1xoq3XbWfWCBP-10Cvh-cmsc3VBcayL-b/edit?gid=1451800128",
+          "source_label": "Biểu mẫu 2, dòng 159",
+          "published_on": null,
+          "prior": false
         },
         {
           "rank": 11,
           "name": "Công ty cổ phần thí nghiệm điện Việt Nam",
           "place": "Thanh Xuân / Khương Đình",
-          "high": 150.0,
-          "mean": 40.0,
-          "low": 30.0
+          "high": 150,
+          "mean": 40,
+          "low": 30,
+          "source": "https://docs.google.com/spreadsheets/u/0/d/15HedfXtyQE7Y-UIOfeLVZZLEW1P-xfhS/htmlview",
+          "source_label": "Biểu số 1, dòng 285",
+          "published_on": null,
+          "prior": false
         },
         {
           "rank": 11,
           "name": "Công ty TNHH Dữ liệu số DTK",
           "place": "Hoàng Mai",
-          "high": 150.0,
+          "high": 150,
           "mean": 23.3,
-          "low": 5.4
+          "low": 5.4,
+          "source": "https://docs.google.com/spreadsheets/d/1B_DkEY75jifpaaPr4dRpX7jAqheIS7IhWS8vybvJClk/edit?gid=0",
+          "source_label": "Báo cáo tiền lương, dòng 64",
+          "published_on": null,
+          "prior": true
+        },
+        {
+          "rank": 11,
+          "name": "CÔNG TY TNHH KỸ THƯƠNG TRƯỜNG GIANG",
+          "place": "Hoài Đức",
+          "high": 150,
+          "mean": 63,
+          "low": 0,
+          "source": "https://docs.google.com/spreadsheets/d/1lZ_FQzIG1lZklYA69Znp4Ssju0YUXQeZ/edit?gid=792546075",
+          "source_label": "Phụ lục 1, dòng 271",
+          "published_on": null,
+          "prior": false
         },
         {
           "rank": 11,
           "name": "Tổng công ty Dược Việt Nam - CTCP",
-          "place": "Văn Miếu - Quốc Tử Giám",
-          "high": 150.0,
-          "mean": 20.0,
-          "low": 12.0
+          "place": "Văn Miếu- Quốc Tử Giám",
+          "high": 150,
+          "mean": 20,
+          "low": 12,
+          "source": "https://docs.google.com/spreadsheets/d/1KwGOOZz3I9GbPe2AknXOgwMBYWBsYZsT/edit?gid=1106102721",
+          "source_label": "Nhập liệu DN, dòng 53",
+          "published_on": null,
+          "prior": false
         },
         {
-          "rank": 15,
-          "name": "CÔNG TY CỔ PHẦN ATWOM VIỆT NAM",
-          "place": "Thanh Xuân / Khương Đình",
-          "high": 136.0,
-          "mean": 64.0,
-          "low": 6.0
-        },
-        {
-          "rank": 16,
-          "name": "Công Ty TNHH Smallpin Logistics VietNam",
-          "place": "Thanh Xuân / Khương Đình",
-          "high": 135.0,
-          "mean": 23.5,
-          "low": 1.0
+          "rank": 11,
+          "name": "CÔNG TY TNHH THƯƠNG MẠI QUỐC TẾ VNP",
+          "place": "Nam Phù",
+          "high": 150,
+          "mean": 115,
+          "low": 80,
+          "source": "https://docs.google.com/spreadsheets/d/1wAecAgEd_3uceGVsOukVLPfc3XTDV05L/edit?gid=1861667793",
+          "source_label": "Sheet1, dòng 153",
+          "published_on": null,
+          "prior": false
         },
         {
           "rank": 17,
-          "name": "Công Ty TNHH Smallpin Partners",
+          "name": "CÔNG TY CỔ PHẦN ATWOM VIỆT NAM",
           "place": "Thanh Xuân / Khương Đình",
-          "high": 127.0,
-          "mean": 25.4,
-          "low": 1.0
+          "high": 136,
+          "mean": 64,
+          "low": 6,
+          "source": "https://docs.google.com/spreadsheets/u/0/d/15HedfXtyQE7Y-UIOfeLVZZLEW1P-xfhS/htmlview",
+          "source_label": "Biểu số 1, dòng 216",
+          "published_on": null,
+          "prior": false
         },
         {
           "rank": 18,
-          "name": "CÔNG TY TNHH ECOPOWER",
-          "place": "Dương Nội",
-          "high": 125.0,
-          "mean": 73.113,
-          "low": 29.6
+          "name": "Công Ty TNHH Smallpin Logistics VietNam",
+          "place": "Thanh Xuân / Khương Đình",
+          "high": 135,
+          "mean": 23.5,
+          "low": 1,
+          "source": "https://docs.google.com/spreadsheets/u/0/d/15HedfXtyQE7Y-UIOfeLVZZLEW1P-xfhS/htmlview",
+          "source_label": "Biểu số 1, dòng 825",
+          "published_on": null,
+          "prior": false
         },
         {
           "rank": 19,
-          "name": "Ngân hàng TNHH MTV Industrial Bank of Korea (Việt Nam)",
-          "place": "Từ Liêm",
-          "high": 121.4,
-          "mean": 36.8,
-          "low": 6.3
+          "name": "Công Ty TNHH Smallpin Partners",
+          "place": "Thanh Xuân / Khương Đình",
+          "high": 127,
+          "mean": 25.4,
+          "low": 1,
+          "source": "https://docs.google.com/spreadsheets/u/0/d/15HedfXtyQE7Y-UIOfeLVZZLEW1P-xfhS/htmlview",
+          "source_label": "Biểu số 1, dòng 826",
+          "published_on": null,
+          "prior": false
         },
         {
           "rank": 20,
-          "name": "Công ty TNHH Giải pháp Toàn cầu IIJ Việt Nam",
-          "place": "Láng",
-          "high": 120.0,
-          "mean": 35.0,
-          "low": 3.0
-        },
-        {
-          "rank": 20,
-          "name": "Công ty TNHH MJ Logistics (Hanoi)",
-          "place": "Từ Liêm",
-          "high": 120.0,
-          "mean": null,
-          "low": 9.0
+          "name": "CÔNG TY TNHH ECOPOWER",
+          "place": "Dương Nội",
+          "high": 125,
+          "mean": 73.113,
+          "low": 29.6,
+          "source": "https://docs.google.com/spreadsheets/d/119zLbr98SKa_p6HPfgwC4mcebsCHoOOCTq-U6ijavwc/edit?usp=sharing",
+          "source_label": "Biểu mẫu 2, dòng 235",
+          "published_on": null,
+          "prior": false
         }
       ]
     },
     "solar": {
-      "total": 2365,
+      "total": 2618,
       "top": [
         {
           "rank": 1,
           "name": "CÔNG TY TNHH TUNGALOY - NTK VIỆT NAM",
           "place": "Thanh Xuân / Khương Đình",
-          "high": 653.0,
-          "mean": 186.0,
-          "low": 34.0
+          "high": 653,
+          "mean": 186,
+          "low": 34,
+          "source": "https://docs.google.com/spreadsheets/u/0/d/15HedfXtyQE7Y-UIOfeLVZZLEW1P-xfhS/htmlview",
+          "source_label": "Biểu số 1, dòng 580",
+          "published_on": null,
+          "prior": false
         },
         {
           "rank": 2,
           "name": "Công ty TNHH công nghệ công trình Sheng Huei",
           "place": "Thanh Xuân / Khương Đình",
-          "high": 188.0,
+          "high": 188,
           "mean": 17.73,
-          "low": 2.1
+          "low": 2.1,
+          "source": "https://docs.google.com/spreadsheets/u/0/d/15HedfXtyQE7Y-UIOfeLVZZLEW1P-xfhS/htmlview",
+          "source_label": "Biểu số 1, dòng 591",
+          "published_on": null,
+          "prior": false
         },
         {
           "rank": 3,
           "name": "Công ty TNHH Omni Logistics Việt Nam",
           "place": "Kim Liên",
           "high": 178.8,
-          "mean": 35.0,
-          "low": 13.7
+          "mean": 35,
+          "low": 13.7,
+          "source": "https://docs.google.com/spreadsheets/d/1z9z3uvxO1XQ1mcvbmexPi7bROrumB9MT/edit?gid=387306274",
+          "source_label": "TỔNG HỢP, dòng 98",
+          "published_on": null,
+          "prior": false
         },
         {
           "rank": 4,
           "name": "Công ty TNHH ANC International Vietnam Inc",
           "place": "Từ Liêm",
-          "high": 130.0,
-          "mean": 27.0,
-          "low": 10.0
+          "high": 130,
+          "mean": 27,
+          "low": 10,
+          "source": "https://docs.google.com/spreadsheets/d/1as2XK_DiLfSPOFnvT15AXpvyEBqvgtU2DkhcezrGsII/edit",
+          "source_label": "Biểu 1, dòng 31",
+          "published_on": null,
+          "prior": false
         },
         {
           "rank": 5,
           "name": "Công ty TNHH Itsuwa Việt Nam",
           "place": "Láng",
-          "high": 105.0,
-          "mean": 40.0,
-          "low": 8.7
+          "high": 105,
+          "mean": 40,
+          "low": 8.7,
+          "source": "https://docs.google.com/spreadsheets/d/1XsjhlwtlBTX4fjodALzfMrNGtl6QOsoPQ8NnfDKUQzU/edit?usp=sharing",
+          "source_label": "DN Nhập - Biểu 1, dòng 154",
+          "published_on": null,
+          "prior": false
         },
         {
           "rank": 6,
@@ -223,55 +316,83 @@
           "place": "Cầu Giấy",
           "high": 92.881,
           "mean": 21.814,
-          "low": 6.674
+          "low": 6.674,
+          "source": "https://docs.google.com/spreadsheets/d/1IPAs7M-RVqxp_MCBCpYCjoKWts83_4jT/edit?gid=1429323643",
+          "source_label": "Sheet tổng hợp, dòng 89",
+          "published_on": null,
+          "prior": false
         },
         {
           "rank": 7,
           "name": "CÔNG TY TNHH FUJIFILM BUSINESS INNOVATION VIỆT NAM- CHI NHÁNH HÀ NỘI",
           "place": "Kim Liên",
-          "high": 80.0,
-          "mean": 25.0,
-          "low": 8.0
+          "high": 80,
+          "mean": 25,
+          "low": 8,
+          "source": "https://docs.google.com/spreadsheets/d/1z9z3uvxO1XQ1mcvbmexPi7bROrumB9MT/edit?gid=387306274",
+          "source_label": "TỔNG HỢP, dòng 236",
+          "published_on": null,
+          "prior": false
         },
         {
           "rank": 8,
           "name": "CHI NHÁNH CÔNG TY CỔ PHẦN I-GLOCAL TẠI THÀNH PHỐ HÀ NỘI",
           "place": "Cầu Giấy",
-          "high": 76.0,
-          "mean": 38.0,
-          "low": 21.0
+          "high": 76,
+          "mean": 38,
+          "low": 21,
+          "source": "https://docs.google.com/spreadsheets/d/1IPAs7M-RVqxp_MCBCpYCjoKWts83_4jT/edit?gid=1429323643",
+          "source_label": "Sheet tổng hợp, dòng 964",
+          "published_on": null,
+          "prior": false
         },
         {
           "rank": 9,
           "name": "Công ty TNHH DS & WAC VINA",
           "place": "Cầu Giấy",
-          "high": 75.0,
+          "high": 75,
           "mean": 35.714,
-          "low": 3.0
+          "low": 3,
+          "source": "https://docs.google.com/spreadsheets/d/1IPAs7M-RVqxp_MCBCpYCjoKWts83_4jT/edit?gid=1429323643",
+          "source_label": "Sheet tổng hợp, dòng 46",
+          "published_on": null,
+          "prior": false
         },
         {
           "rank": 10,
           "name": "Công ty Cổ phần Hanel",
           "place": "Kim Liên",
-          "high": 71.0,
+          "high": 71,
           "mean": 18.47,
-          "low": 6.5
+          "low": 6.5,
+          "source": "https://docs.google.com/spreadsheets/d/1z9z3uvxO1XQ1mcvbmexPi7bROrumB9MT/edit?gid=387306274",
+          "source_label": "TỔNG HỢP, dòng 214",
+          "published_on": null,
+          "prior": false
         },
         {
           "rank": 11,
           "name": "CÔNG TY CỔ PHẦN ATWOM VIỆT NAM",
           "place": "Thanh Xuân / Khương Đình",
-          "high": 68.0,
-          "mean": 32.0,
-          "low": 6.0
+          "high": 68,
+          "mean": 32,
+          "low": 6,
+          "source": "https://docs.google.com/spreadsheets/u/0/d/15HedfXtyQE7Y-UIOfeLVZZLEW1P-xfhS/htmlview",
+          "source_label": "Biểu số 1, dòng 216",
+          "published_on": null,
+          "prior": false
         },
         {
           "rank": 12,
           "name": "CÔNG TY TNHH INTERCEM VINA",
           "place": "Từ Liêm",
           "high": 60.7,
-          "mean": 23.0,
-          "low": 11.0
+          "mean": 23,
+          "low": 11,
+          "source": "https://docs.google.com/spreadsheets/d/1as2XK_DiLfSPOFnvT15AXpvyEBqvgtU2DkhcezrGsII/edit",
+          "source_label": "Biểu 1, dòng 761",
+          "published_on": null,
+          "prior": false
         },
         {
           "rank": 13,
@@ -279,15 +400,23 @@
           "place": "Văn Miếu - Quốc Tử Giám",
           "high": 60.543,
           "mean": 12.90455,
-          "low": 7.057435
+          "low": 7.057435,
+          "source": "https://docs.google.com/spreadsheets/d/1KwGOOZz3I9GbPe2AknXOgwMBYWBsYZsT/edit?gid=1106102721",
+          "source_label": "Nhập liệu DN, dòng 98",
+          "published_on": null,
+          "prior": false
         },
         {
           "rank": 14,
           "name": "Tổng công ty Gas Petrolimex-CTCP",
           "place": "Văn Miếu - Quốc Tử Giám",
-          "high": 60.0,
-          "mean": 24.0,
-          "low": 12.0
+          "high": 60,
+          "mean": 24,
+          "low": 12,
+          "source": "https://docs.google.com/spreadsheets/d/1KwGOOZz3I9GbPe2AknXOgwMBYWBsYZsT/edit?gid=1106102721",
+          "source_label": "Nhập liệu DN, dòng 108",
+          "published_on": null,
+          "prior": false
         },
         {
           "rank": 15,
@@ -295,7 +424,11 @@
           "place": "Cầu Giấy",
           "high": 55.075,
           "mean": 13.606151,
-          "low": 2.793561
+          "low": 2.793561,
+          "source": "https://docs.google.com/spreadsheets/d/1IPAs7M-RVqxp_MCBCpYCjoKWts83_4jT/edit?gid=1429323643",
+          "source_label": "Sheet tổng hợp, dòng 714",
+          "published_on": null,
+          "prior": false
         },
         {
           "rank": 16,
@@ -303,47 +436,69 @@
           "place": "Cầu Giấy",
           "high": 54.943,
           "mean": 32.03,
-          "low": 15.138
+          "low": 15.138,
+          "source": "https://docs.google.com/spreadsheets/d/1IPAs7M-RVqxp_MCBCpYCjoKWts83_4jT/edit?gid=1429323643",
+          "source_label": "Sheet tổng hợp, dòng 326",
+          "published_on": null,
+          "prior": false
         },
         {
           "rank": 17,
           "name": "Công ty Cổ phần đầu tư và Công nghệ Vạn Xuân",
           "place": "Cầu Giấy",
-          "high": 50.0,
+          "high": 50,
           "mean": 14.282,
-          "low": 6.5
+          "low": 6.5,
+          "source": "https://docs.google.com/spreadsheets/d/1IPAs7M-RVqxp_MCBCpYCjoKWts83_4jT/edit?gid=1429323643",
+          "source_label": "Sheet tổng hợp, dòng 350",
+          "published_on": null,
+          "prior": false
         },
         {
           "rank": 17,
           "name": "Công ty cổ phần dược phẩm Quốc tế - Winsacom",
           "place": "Láng",
-          "high": 50.0,
-          "mean": 25.0,
-          "low": 12.0
+          "high": 50,
+          "mean": 25,
+          "low": 12,
+          "source": "https://docs.google.com/spreadsheets/d/1XsjhlwtlBTX4fjodALzfMrNGtl6QOsoPQ8NnfDKUQzU/edit?usp=sharing",
+          "source_label": "DN Nhập - Biểu 1, dòng 491",
+          "published_on": null,
+          "prior": false
+        },
+        {
+          "rank": 17,
+          "name": "CÔNG TY CỔ PHẦN VẬN TẢI VÀ THIẾT BỊ Ô TÔ TUẤN TÚ",
+          "place": "Gia Lâm",
+          "high": 50,
+          "mean": 32,
+          "low": 30,
+          "source": "https://docs.google.com/spreadsheets/d/1Ag2I_6c_U1yZzUfWcs9FkMflq5a5AjCu/edit?gid=1377309527",
+          "source_label": "Du lieu doanh nghiep, dòng 34",
+          "published_on": null,
+          "prior": true
         },
         {
           "rank": 17,
           "name": "Công ty CP Tập đoàn truyền thông Starworld",
           "place": "Kim Liên",
-          "high": 50.0,
-          "mean": 45.0,
-          "low": 40.0
-        },
-        {
-          "rank": 20,
-          "name": "CÔNG TY CỔ PHẦN TÂN PHÚ LONG",
-          "place": "Láng",
-          "high": 47.5,
-          "mean": 16.8,
-          "low": 10.07
+          "high": 50,
+          "mean": 45,
+          "low": 40,
+          "source": "https://docs.google.com/spreadsheets/d/1z9z3uvxO1XQ1mcvbmexPi7bROrumB9MT/edit?gid=387306274",
+          "source_label": "TỔNG HỢP, dòng 149",
+          "published_on": null,
+          "prior": false
         }
       ]
     }
   },
   "blocked": [
-    "Gia Lâm"
+    "Gia Lâm",
+    "Hoàng Mai"
   ],
   "new_sources": 0,
-  "directories_checked": 1,
-  "directory": "https://thuvienphapluat.vn/phap-luat/ho-tro-phap-luat/link-nop-bao-cao-tien-luong-thuong-tet-2027-ha-noi-cac-phuong-xa-tong-hop-chi-tiet-ra-sao-301249.html"
+  "directories_checked": 2,
+  "directory": "https://thuvienphapluat.vn/phap-luat/ho-tro-phap-luat/link-nop-bao-cao-tien-luong-thuong-tet-2027-ha-noi-cac-phuong-xa-tong-hop-chi-tiet-ra-sao-301249.html",
+  "directory_hub": "https://thuvienphapluat.vn/lao-dong-tien-luong/cap-nhat-link-nop-bao-cao-tien-luong-thuong-tet-2027-tung-tinh-thanh-ra-sao-68127.html"
 }

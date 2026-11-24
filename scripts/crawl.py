@@ -154,7 +154,22 @@ def read_export(body, kind, layouts):
 def crawl(config):
     linked = set()
     directories_checked = 0
-    for url in config["directory"]:
+    directories = dict.fromkeys(config["directory"])
+    if hub := config.get("directory_hub"):
+        try:
+            links = Links()
+            links.feed(download(hub, REPORT_HOST).decode("utf-8", errors="replace"))
+            for href in links.urls:
+                candidate = urlsplit(urljoin(hub, href))
+                if (
+                    candidate.scheme == "https" and candidate.netloc == REPORT_HOST
+                    and "ha-noi" in candidate.path and "thuong-tet-2027" in candidate.path
+                    and candidate.path.endswith(".html")
+                ):
+                    directories.setdefault(candidate._replace(query="", fragment="").geturl())
+        except (URLError, TimeoutError, ValueError) as exc:
+            print(f"Main directory unavailable: {type(exc).__name__}")
+    for url in directories:
         try:
             entries = public_directory_links(url, download(url, REPORT_HOST))
             if entries:

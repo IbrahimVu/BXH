@@ -1,7 +1,8 @@
 {
   "directory": [
     "https://thuvienphapluat.vn/phap-luat/ho-tro-phap-luat/link-nop-bao-cao-tien-luong-thuong-tet-2027-ha-noi-cac-phuong-xa-tong-hop-chi-tiet-ra-sao-301249.html",
-    "https://thuvienphapluat.vn/phap-luat/ho-tro-phap-luat/tong-hop-cong-van-bao-cao-luong-thuong-tet-2027-ha-noi-cua-ubnd-xa-phuong-gui-cac-doanh-nghiep-nhu-301509.html"
+    "https://thuvienphapluat.vn/phap-luat/ho-tro-phap-luat/tong-hop-cong-van-bao-cao-luong-thuong-tet-2027-ha-noi-cua-ubnd-xa-phuong-gui-cac-doanh-nghiep-nhu-301509.html",
+    "https://thuvienphapluat.vn/lao-dong-tien-luong/link-bao-cao-tien-luong-thuong-tet-2027-cho-doanh-nghiep-tai-ha-noi-ra-sao-68272.html"
   ],
   "sources": [
     {
@@ -155,6 +156,11 @@
       "id": 29,
       "place": "Việt Hưng",
       "url": "https://docs.google.com/spreadsheets/d/1hWZ2IFyOZ8BgUyqBdgxfojXL2Itn_jGX-MfbBzZP-Mw/edit?usp=sharing"
+    },
+    {
+      "id": 30,
+      "place": "Nam Phù",
+      "url": "https://docs.google.com/spreadsheets/d/1wAecAgEd_3uceGVsOukVLPfc3XTDV05L/edit?gid=1861667793"
     }
   ],
   "layouts": [
@@ -862,6 +868,33 @@
       },
       "supplemental": true,
       "header_sha256": "328d1db49ea409bcd7b3366fbd68afd9c9ef580c6a474c2aeae90233a45ae345"
+    },
+    {
+      "source": 30,
+      "tab": "Sheet1",
+      "first_row": 9,
+      "unit": 1000000,
+      "columns": {
+        "name": 1,
+        "tax": null,
+        "address": null,
+        "lunar": [
+          16,
+          17,
+          18
+        ],
+        "solar": [
+          10,
+          11,
+          12
+        ],
+        "no_lunar": 13,
+        "no_solar": 7,
+        "status_lunar": null,
+        "status_solar": null
+      },
+      "header_sha256": "a7571ce46e3cef6548852d19cfa265b9dd8406754c6ccf0c9c1a664ec0594f51"
     }
-  ]
+  ],
+  "directory_hub": "https://thuvienphapluat.vn/lao-dong-tien-luong/cap-nhat-link-nop-bao-cao-tien-luong-thuong-tet-2027-tung-tinh-thanh-ra-sao-68127.html"
 }
