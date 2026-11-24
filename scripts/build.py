@@ -55,6 +55,7 @@ def render_table(ranking, anchor, title):
             f'<tr data-high="{row["high"]}"><td class="rank">{row["rank"]:02d}</td>'
             f'<th scope="row"><span class="company-name">{escape(public_company_name(row["name"]))}</span>{status}</th>'
             f'<td class="company-place">{escape(row["place"])}</td>'
+            f'<td class="company-industry">{escape(row.get("industry") or "Chưa rõ")}</td>'
             f'<td class="high">{format_number(row["high"])}</td>'
             f'<td class="amount">{format_number(row["mean"])}</td>'
             f'<td class="amount">{format_number(row["low"])}</td>'
@@ -73,7 +74,8 @@ def render_table(ranking, anchor, title):
     <table>
       <thead><tr>
         <th scope="col">Hạng</th><th scope="col">Doanh nghiệp</th>
-        <th scope="col">Phường/xã báo cáo</th><th scope="col">Cao nhất</th>
+        <th scope="col">Phường/xã báo cáo</th><th scope="col">Ngành/lĩnh vực kinh doanh</th>
+        <th scope="col">Cao nhất</th>
         <th scope="col">Bình quân</th><th scope="col">Thấp nhất</th>
         <th scope="col">Nguồn</th><th scope="col">Ngày công bố</th>
       </tr></thead>

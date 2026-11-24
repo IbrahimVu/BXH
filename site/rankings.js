@@ -2,6 +2,8 @@ const tabList = document.querySelector(".occasion-tabs");
 const tabs = Array.from(tabList.querySelectorAll("a"));
 const form = document.querySelector(".filters");
 const company = form.elements.namedItem("company");
+const industry = form.elements.namedItem("industry");
+const industrySuggestions = document.querySelector("#industry-suggestions");
 const place = document.querySelector("#place-search");
 const placeMenu = document.querySelector(".place-menu");
 const placeOptions = document.querySelector("#place-options");
@@ -25,6 +27,7 @@ const panels = tabs.map((tab) => {
   const body = panel.querySelector("tbody");
   const remaining = panel.querySelector(".remaining-rows");
   const labels = new Map();
+  const industries = new Map();
   const rows = [...body.rows, ...remaining.content.querySelectorAll("tr")].map((element) => {
     const names = element.querySelector(".company-place").textContent.split(/\s+\/\s+/);
     const places = [];
@@ -35,12 +38,16 @@ const panels = tabs.map((tab) => {
       const label = name.trim().replace(/^\p{Ll}/u, (letter) => letter.toLocaleUpperCase("vi"));
       if (!labels.has(key) || label.length < labels.get(key).length) labels.set(key, label);
     }
-    return { element, name: searchText(element.querySelector(".company-name").textContent), places, high: Number(element.dataset.high) };
+    const industryLabel = element.querySelector(".company-industry").textContent;
+    const industryKey = searchText(industryLabel);
+    if (!industries.has(industryKey)) industries.set(industryKey, industryLabel);
+    return { element, name: searchText(element.querySelector(".company-name").textContent), places, industry: industryKey, high: Number(element.dataset.high) };
   });
   return {
     panel,
     rows,
     places: [...labels].sort((a, b) => a[1].localeCompare(b[1], "vi")),
+    industries: [...industries.values()].sort((a, b) => a.localeCompare(b, "vi")),
     count: panel.querySelector(".filter-count"),
     table: panel.querySelector(".table-wrap"),
     body,
@@ -131,6 +138,7 @@ function showPage(state, page) {
 function filterRows() {
   const state = panels[activeIndex];
   const query = searchText(company.value);
+  const industryQuery = searchText(industry.value);
   const input = minimum.value.trim();
   const valid = input === "" || /^\d+(?:[.,]\d+)?$/.test(input);
   const threshold = valid ? Number(input.replace(",", ".")) : 0;
@@ -139,6 +147,7 @@ function filterRows() {
 
   state.matches = state.rows.filter((row) => row.name.includes(query)
     && (selectedPlace === "" || row.places.includes(selectedPlace))
+    && row.industry.includes(industryQuery)
     && row.high >= threshold);
   showPage(state, 1);
 }
@@ -154,6 +163,7 @@ function activate(index, updateUrl = false) {
 
   const selection = panels[index].places.find(([key]) => key === selectedPlace);
   [selectedPlace, selectedPlaceLabel] = selection ?? ["", ""];
+  industrySuggestions.replaceChildren(...panels[index].industries.map((label) => new Option(label, label)));
   closePlaceMenu();
   filterRows();
 
@@ -243,11 +253,13 @@ placeOptions.addEventListener("click", (event) => {
 });
 
 company.addEventListener("input", filterRows);
+industry.addEventListener("input", filterRows);
 minimum.addEventListener("input", filterRows);
 form.addEventListener("submit", (event) => event.preventDefault());
 form.addEventListener("reset", (event) => {
   event.preventDefault();
   company.value = "";
+  industry.value = "";
   selectedPlace = "";
   selectedPlaceLabel = "";
   closePlaceMenu();

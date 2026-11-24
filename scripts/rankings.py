@@ -6,6 +6,14 @@ from collections import defaultdict
 from decimal import Decimal, InvalidOperation
 
 OCCASIONS = ("lunar", "solar")
+INDUSTRY_HEADERS = {
+    "nganhnghekinhdoanh",
+    "nganhnghekinhdoanhchinh",
+    "nganhlinhvuchdchinh",
+    "nganhlinhvuchoatdongchinh",
+    "nganhnghesanxuatkinhdoanhchinh",
+    "nganhnghechinhchontrongdanhsach",
+}
 COMPANY_NAME = re.compile(
     r"công|cong|cty|ct |c\.ty|tnhh|hợp tác|htx|chi nhánh|văn phòng|viện|liên hiệp|trung tâm|tổng công|vpđd",
     re.IGNORECASE,
@@ -39,6 +47,27 @@ def as_text(value):
     if isinstance(value, float) and value.is_integer():
         return str(int(value))
     return str(value).strip()
+
+
+def industry_column(headers):
+    matches = {
+        column
+        for row in headers
+        for column, label in enumerate(row)
+        if isinstance(label, str) and normalized(label) in INDUSTRY_HEADERS
+    }
+    return next(iter(matches)) if len(matches) == 1 else None
+
+
+def industry_text(value):
+    if not isinstance(value, str):
+        return None
+    label = " ".join(value.split())
+    if (not any(char.isalpha() for char in label)
+        or normalized(label) in {"na", "khong", "chuaro", "chuacothongtin"}
+        or re.search(r"@|\b0(?:[ .-]?\d){9,10}\b", label)):
+        return None
+    return label
 
 
 def number(value):
@@ -131,6 +160,7 @@ def company_records(config, tables):
         columns = layout["columns"]
         rows = tables.get(source, {}).get(tab, ())
         first_row = layout["first_row"]
+        industry = industry_column(rows[: first_row - 1])
         for row_number, row in enumerate(rows[first_row - 1 :], first_row):
             name = cell(row, columns["name"])
             if not isinstance(name, str) or not COMPANY_NAME.search(name):
@@ -159,6 +189,7 @@ def company_records(config, tables):
             records.append({
                 "key": key, "identity": (normalized_name, address), "name": name,
                 "place": places[source], "source": source, "tab": tab,
+                "industry": industry_text(cell(row, industry)),
                 "row": int(cell(row, 7)) if source == 5 else row_number,
                 "amounts": {occasion: amounts(row, layout, occasion) for occasion in OCCASIONS},
                 "generic": normalized_name in ("congty", "congtytnhh", "congtyco"),
@@ -207,6 +238,7 @@ def site_rankings(config, tables, checked_at, blocked=(), new_sources=(), direct
             ranked_rows.append(dict(
                 rank=rank, name=record["name"], place=record["place"], high=high, mean=mean, low=low,
                 source=source_urls[record["source"]], source_label=f'{record["tab"]}, dòng {record["row"]}',
+                industry=record.get("industry"),
             ))
             previous = highest
         rankings[occasion] = {"total": len(ranked_rows), "rows": ranked_rows}
