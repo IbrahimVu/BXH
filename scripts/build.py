@@ -49,6 +49,14 @@ def source_link(url, label):
     return f'<a href="{escape(url, quote=True)}">{escape(label)}</a>'
 
 
+def detail_cell(name):
+    label = escape(f"Xem chi tiết {name}", quote=True)
+    return (
+        '<td class="row-actions"><button type="button" class="row-detail" '
+        f'aria-label="{label}" aria-haspopup="dialog"></button></td>'
+    )
+
+
 def render_summary(rows):
     if not rows:
         return ""
@@ -58,18 +66,19 @@ def render_summary(rows):
         f'<td class="amount">{format_number(row["mean"])}</td>'
         f'<td class="amount">{format_number(row["low"])}</td>'
         f'<td>{source_link(row["source"], row["source_label"])}</td>'
-        f'<td>{escape(row["published_on"])}</td></tr>'
+        f'<td>{escape(row["published_on"])}</td>{detail_cell(row["group"])}</tr>'
         for row in sorted(rows, key=lambda row: row["high"] if row["high"] is not None else -1, reverse=True)
     )
     return f"""
     <div class="archive-summary">
       <h3 class="archive-heading">Số liệu tổng hợp theo loại hình doanh nghiệp</h3>
       <p class="archive-note">Số liệu kế hoạch trong báo cáo tổng hợp cấp thành phố. Nguồn không nêu tên doanh nghiệp ứng với mức cao nhất, thấp nhất.</p>
-      <table aria-label="Thống kê thưởng theo loại hình doanh nghiệp">
+      <table class="summary-results" aria-label="Thống kê thưởng theo loại hình doanh nghiệp">
         <thead><tr>
           <th scope="col">Loại hình doanh nghiệp</th><th scope="col">Cao nhất</th>
           <th scope="col">Bình quân</th><th scope="col">Thấp nhất</th>
           <th scope="col">Nguồn</th><th scope="col">Ngày báo đăng</th>
+          <th scope="col" class="row-actions" aria-label="Chi tiết"></th>
         </tr></thead>
         <tbody>{body}</tbody>
       </table>
@@ -95,6 +104,7 @@ def render_table(ranking, anchor, title, year, summary):
         industry_note = row.get("industry_reference")
         industry_title = f' title="{escape(industry_note, quote=True)}"' if industry_note else ""
         industry = row.get("industry") or "Chưa rõ"
+        name = public_company_name(row["name"])
         industry_text = escape(industry)
         if len(industry) > 24:
             industry_text = (
@@ -103,13 +113,13 @@ def render_table(ranking, anchor, title, year, summary):
             )
         table_rows.append(
             f'<tr data-high="{high if high is not None else ""}"><td class="rank">{rank}</td>'
-            f'<th scope="row"><span class="company-name">{escape(public_company_name(row["name"]))}</span>{status}</th>'
+            f'<th scope="row"><span class="company-name">{escape(name)}</span>{status}</th>'
             f'<td class="high">{format_number(row["high"])}</td>'
             f'<td class="company-place">{escape(row["place"])}</td>'
             f'<td class="company-industry"{industry_title}>{industry_text}</td>'
             f'<td class="amount">{format_number(row["mean"])}</td>'
             f'<td class="amount">{format_number(row["low"])}</td>'
-            f'<td>{source}</td><td>{published}</td></tr>'
+            f'<td>{source}</td><td>{published}</td>{detail_cell(name)}</tr>'
         )
     first_page = "\n".join(table_rows[:PAGE_SIZE])
     remaining_rows = "\n".join(table_rows[PAGE_SIZE:])
@@ -136,6 +146,7 @@ def render_table(ranking, anchor, title, year, summary):
         <th scope="col">{place_label}</th><th scope="col">Ngành/lĩnh vực</th>
         <th scope="col">Bình quân</th><th scope="col">Thấp nhất</th>
         <th scope="col">Nguồn</th><th scope="col">{date_label}</th>
+        <th scope="col" class="row-actions" aria-label="Chi tiết"></th>
       </tr></thead>
       <tbody>{first_page}</tbody>
     </table>

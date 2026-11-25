@@ -9,6 +9,7 @@ const defaultYear = year.value;
 const minimumError = document.querySelector("#minimum-error");
 const filterToggle = form.querySelector(".filter-toggle");
 const filterBadge = form.querySelector(".filter-badge");
+const rewardDetails = document.querySelector(".reward-details");
 
 function searchText(value) {
   return value.toLocaleLowerCase("vi").normalize("NFD")
@@ -19,6 +20,33 @@ function placeKey(value) {
   const key = searchText(value).replace(/[^a-z0-9]/g, "");
   return key.replace(/(?:thanhpho|tp)?hanoi$/, "") || key;
 }
+
+document.querySelector(".results-layout").addEventListener("click", (event) => {
+  const toggle = event.target.closest(".row-detail");
+  if (!toggle) return;
+
+  const row = toggle.closest("tr");
+  const heading = row.querySelector('th[scope="row"]');
+  const columns = row.closest("table").tHead.rows[0].cells;
+  const section = row.closest(".ranking");
+  rewardDetails.querySelector("h2").textContent = heading.textContent.trim();
+  rewardDetails.querySelector(".detail-context").textContent =
+    `${section.querySelector("h2").textContent} · ${section.querySelector(".ranking-unit").textContent}`;
+
+  const fields = document.createDocumentFragment();
+  Array.from(row.cells).forEach((cell, index) => {
+    if (cell === heading || cell.classList.contains("row-actions")) return;
+    const term = document.createElement("dt");
+    const value = document.createElement("dd");
+    term.textContent = columns[index].textContent;
+    const link = cell.querySelector("a");
+    if (link) value.append(link.cloneNode(true));
+    else value.textContent = cell.textContent.trim();
+    fields.append(term, value);
+  });
+  rewardDetails.querySelector("dl").replaceChildren(fields);
+  rewardDetails.showModal();
+});
 
 const countFormat = new Intl.NumberFormat("vi-VN");
 const panelsByYear = new Map(Array.from(year.options, ({ value }) => [value, []]));
