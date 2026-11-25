@@ -1,0 +1,259 @@
+{
+  "2026": {
+    "coverage_note": "Báo cáo nhanh cấp thành phố tổng hợp 3.182 doanh nghiệp. Bảng xếp hạng chỉ bao gồm các doanh nghiệp có tên và mức cao nhất xác định được từ nguồn công khai. Số liệu chỉ có bình quân được hiển thị với hạng để trống.",
+    "sources": [
+      {
+        "url": "https://baochinhphu.vn/ha-noi-thuong-tet-nguyen-dan-2026-co-noi-cao-nhat-hon-600-trieu-dong-102260105101332906.htm",
+        "label": "Báo Chính phủ · Dẫn báo cáo Sở Nội vụ Hà Nội"
+      },
+      {
+        "url": "https://thuvienphapluat.vn/lao-dong-tien-luong/tong-hop-link-nop-mail-nop-bao-cao-tinh-hinh-su-dung-lao-dong-6-thang-cuoi-nam-2025-day-du-chi-tiet-51736.html",
+        "label": "Danh mục nộp báo cáo lao động cuối năm 2025"
+      },
+      {
+        "url": "https://hhtip.hanoi.gov.vn/vi/tin-tuc/giu-nhip-san-xuat-dau-xuan-bao-dam-viec-lam-va-tang-truong-2697.html",
+        "label": "Ban Quản lý các Khu công nghệ cao và khu công nghiệp Hà Nội"
+      },
+      {
+        "url": "https://laodongthudo.vn/lanh-dao-lien-doan-lao-dong-thanh-pho-ha-noi-tham-dong-vien-cong-nhan-lao-dong-205618.html",
+        "label": "Lao động Thủ đô · Chuyến thăm của Liên đoàn Lao động Hà Nội"
+      }
+    ],
+    "rankings": {
+      "lunar": {
+        "total": 1,
+        "rows": [
+          {
+            "rank": 1,
+            "name": "Công ty TNHH MTV Đầu tư phát triển Thủy lợi Sông Nhuệ",
+            "place": "Chưa rõ",
+            "industry": "Thủy lợi",
+            "high": 4.0,
+            "mean": null,
+            "low": null,
+            "status": "Mức chi được cơ quan quản lý đưa tin",
+            "source": "https://hhtip.hanoi.gov.vn/vi/tin-tuc/giu-nhip-san-xuat-dau-xuan-bao-dam-viec-lam-va-tang-truong-2697.html",
+            "source_label": "Ban Quản lý các Khu công nghệ cao và khu công nghiệp Hà Nội",
+            "published_on": "20/02/2026"
+          }
+        ],
+        "references": [
+          {
+            "high": null,
+            "low": null,
+            "status": "Chỉ có mức bình quân",
+            "name": "Công ty cổ phần Cơ khí - Xây lắp - Thương mại Minh Cường",
+            "place": "Chưa rõ",
+            "industry": "Cơ khí, xây lắp",
+            "mean": 15.8,
+            "source": "https://laodongthudo.vn/lanh-dao-lien-doan-lao-dong-thanh-pho-ha-noi-tham-dong-vien-cong-nhan-lao-dong-205618.html",
+            "source_label": "Lao động Thủ đô · Chuyến thăm của Liên đoàn Lao động Hà Nội",
+            "published_on": "23/02/2026"
+          }
+        ]
+      },
+      "solar": {
+        "total": 0,
+        "rows": [],
+        "references": []
+      }
+    },
+    "summary": {
+      "lunar": [
+        {
+          "group": "100% vốn nhà nước",
+          "mean": 3.5,
+          "high": 103.0,
+          "low": 0.8,
+          "source": "https://baochinhphu.vn/ha-noi-thuong-tet-nguyen-dan-2026-co-noi-cao-nhat-hon-600-trieu-dong-102260105101332906.htm",
+          "source_label": "Báo Chính phủ · Dẫn báo cáo Sở Nội vụ Hà Nội",
+          "published_on": "05/01/2026"
+        },
+        {
+          "group": "Cổ phần có vốn nhà nước chi phối",
+          "mean": 3.7,
+          "high": 45.0,
+          "low": 0.8,
+          "source": "https://baochinhphu.vn/ha-noi-thuong-tet-nguyen-dan-2026-co-noi-cao-nhat-hon-600-trieu-dong-102260105101332906.htm",
+          "source_label": "Báo Chính phủ · Dẫn báo cáo Sở Nội vụ Hà Nội",
+          "published_on": "05/01/2026"
+        },
+        {
+          "group": "Dân doanh",
+          "mean": 4.0,
+          "high": 614.0,
+          "low": 1.0,
+          "source": "https://baochinhphu.vn/ha-noi-thuong-tet-nguyen-dan-2026-co-noi-cao-nhat-hon-600-trieu-dong-102260105101332906.htm",
+          "source_label": "Báo Chính phủ · Dẫn báo cáo Sở Nội vụ Hà Nội",
+          "published_on": "05/01/2026"
+        },
+        {
+          "group": "Có vốn đầu tư nước ngoài (FDI)",
+          "mean": 4.5,
+          "high": 286.0,
+          "low": 1.0,
+          "source": "https://baochinhphu.vn/ha-noi-thuong-tet-nguyen-dan-2026-co-noi-cao-nhat-hon-600-trieu-dong-102260105101332906.htm",
+          "source_label": "Báo Chính phủ · Dẫn báo cáo Sở Nội vụ Hà Nội",
+          "published_on": "05/01/2026"
+        }
+      ],
+      "solar": [
+        {
+          "group": "100% vốn nhà nước",
+          "mean": 1.0,
+          "high": 15.0,
+          "low": 0.5,
+          "source": "https://baochinhphu.vn/ha-noi-thuong-tet-nguyen-dan-2026-co-noi-cao-nhat-hon-600-trieu-dong-102260105101332906.htm",
+          "source_label": "Báo Chính phủ · Dẫn báo cáo Sở Nội vụ Hà Nội",
+          "published_on": "05/01/2026"
+        },
+        {
+          "group": "Cổ phần có vốn nhà nước chi phối",
+          "mean": 1.0,
+          "high": 18.0,
+          "low": 0.5,
+          "source": "https://baochinhphu.vn/ha-noi-thuong-tet-nguyen-dan-2026-co-noi-cao-nhat-hon-600-trieu-dong-102260105101332906.htm",
+          "source_label": "Báo Chính phủ · Dẫn báo cáo Sở Nội vụ Hà Nội",
+          "published_on": "05/01/2026"
+        },
+        {
+          "group": "Dân doanh",
+          "mean": 0.8,
+          "high": 30.0,
+          "low": 0.6,
+          "source": "https://baochinhphu.vn/ha-noi-thuong-tet-nguyen-dan-2026-co-noi-cao-nhat-hon-600-trieu-dong-102260105101332906.htm",
+          "source_label": "Báo Chính phủ · Dẫn báo cáo Sở Nội vụ Hà Nội",
+          "published_on": "05/01/2026"
+        },
+        {
+          "group": "Có vốn đầu tư nước ngoài (FDI)",
+          "mean": 1.0,
+          "high": 37.0,
+          "low": 0.6,
+          "source": "https://baochinhphu.vn/ha-noi-thuong-tet-nguyen-dan-2026-co-noi-cao-nhat-hon-600-trieu-dong-102260105101332906.htm",
+          "source_label": "Báo Chính phủ · Dẫn báo cáo Sở Nội vụ Hà Nội",
+          "published_on": "05/01/2026"
+        }
+      ]
+    }
+  },
+  "2025": {
+    "coverage_note": "Báo cáo nhanh cấp thành phố tổng hợp 4.420 doanh nghiệp. Bảng xếp hạng chỉ bao gồm các doanh nghiệp có tên và mức cao nhất xác định được từ nguồn công khai. Số liệu chỉ có bình quân được hiển thị với hạng để trống.",
+    "sources": [
+      {
+        "url": "https://vneconomy.vn/thuong-tet-2025-tai-ha-noi-tang-cao-nhat-311-trieu-dong.htm",
+        "label": "VnEconomy · Dẫn báo cáo Sở Lao động – Thương binh và Xã hội Hà Nội"
+      },
+      {
+        "url": "https://thuvienphapluat.vn/phap-luat/ho-tro-phap-luat/mau-bao-cao-ke-hoach-thuong-tet-2025-theo-huong-dan-tai-cong-van-952ldld-ha-noi-tai-mau-bao-cao-ke--185787.html",
+        "label": "Công văn 952/LĐLĐ và biểu mẫu kê khai"
+      },
+      {
+        "url": "https://laodongthudo.vn/hieu-qua-tu-viec-trien-khai-cac-phong-trao-thi-dua-tai-doanh-nghiep-184560.html",
+        "label": "Lao động Thủ đô · Thông tin từ Công đoàn công ty"
+      }
+    ],
+    "rankings": {
+      "lunar": {
+        "total": 0,
+        "rows": [],
+        "references": [
+          {
+            "high": null,
+            "low": null,
+            "status": "Chỉ có mức bình quân",
+            "name": "Công ty TNHH Cao su INOUE Việt Nam",
+            "place": "Mê Linh",
+            "industry": "Sản xuất cao su",
+            "mean": 24,
+            "source": "https://laodongthudo.vn/hieu-qua-tu-viec-trien-khai-cac-phong-trao-thi-dua-tai-doanh-nghiep-184560.html",
+            "source_label": "Lao động Thủ đô · Thông tin từ Công đoàn công ty"
+          }
+        ]
+      },
+      "solar": {
+        "total": 0,
+        "rows": [],
+        "references": []
+      }
+    },
+    "summary": {
+      "lunar": [
+        {
+          "group": "Có vốn đầu tư nước ngoài (FDI)",
+          "mean": 4.5,
+          "high": 311.0,
+          "low": 0.5,
+          "source": "https://vneconomy.vn/thuong-tet-2025-tai-ha-noi-tang-cao-nhat-311-trieu-dong.htm",
+          "source_label": "VnEconomy · Dẫn báo cáo Sở Lao động – Thương binh và Xã hội Hà Nội",
+          "published_on": "30/12/2024"
+        },
+        {
+          "group": "100% vốn nhà nước",
+          "mean": 3.3,
+          "high": 38.0,
+          "low": 0.5,
+          "source": "https://vneconomy.vn/thuong-tet-2025-tai-ha-noi-tang-cao-nhat-311-trieu-dong.htm",
+          "source_label": "VnEconomy · Dẫn báo cáo Sở Lao động – Thương binh và Xã hội Hà Nội",
+          "published_on": "30/12/2024"
+        },
+        {
+          "group": "Cổ phần có vốn nhà nước chi phối",
+          "mean": 3.5,
+          "high": 30.0,
+          "low": 0.5,
+          "source": "https://vneconomy.vn/thuong-tet-2025-tai-ha-noi-tang-cao-nhat-311-trieu-dong.htm",
+          "source_label": "VnEconomy · Dẫn báo cáo Sở Lao động – Thương binh và Xã hội Hà Nội",
+          "published_on": "30/12/2024"
+        },
+        {
+          "group": "Dân doanh",
+          "mean": 3.6,
+          "high": 280.0,
+          "low": 0.5,
+          "source": "https://vneconomy.vn/thuong-tet-2025-tai-ha-noi-tang-cao-nhat-311-trieu-dong.htm",
+          "source_label": "VnEconomy · Dẫn báo cáo Sở Lao động – Thương binh và Xã hội Hà Nội",
+          "published_on": "30/12/2024"
+        }
+      ],
+      "solar": [
+        {
+          "group": "Có vốn đầu tư nước ngoài (FDI)",
+          "mean": 1.0,
+          "high": 90.0,
+          "low": 0.5,
+          "source": "https://vneconomy.vn/thuong-tet-2025-tai-ha-noi-tang-cao-nhat-311-trieu-dong.htm",
+          "source_label": "VnEconomy · Dẫn báo cáo Sở Lao động – Thương binh và Xã hội Hà Nội",
+          "published_on": "30/12/2024"
+        },
+        {
+          "group": "100% vốn nhà nước",
+          "mean": 0.75,
+          "high": 10.0,
+          "low": 0.5,
+          "source": "https://vneconomy.vn/thuong-tet-2025-tai-ha-noi-tang-cao-nhat-311-trieu-dong.htm",
+          "source_label": "VnEconomy · Dẫn báo cáo Sở Lao động – Thương binh và Xã hội Hà Nội",
+          "published_on": "30/12/2024"
+        },
+        {
+          "group": "Cổ phần có vốn nhà nước chi phối",
+          "mean": 0.65,
+          "high": 15.0,
+          "low": 0.5,
+          "source": "https://vneconomy.vn/thuong-tet-2025-tai-ha-noi-tang-cao-nhat-311-trieu-dong.htm",
+          "source_label": "VnEconomy · Dẫn báo cáo Sở Lao động – Thương binh và Xã hội Hà Nội",
+          "published_on": "30/12/2024"
+        },
+        {
+          "group": "Dân doanh",
+          "mean": 0.7,
+          "high": 30.0,
+          "low": 0.5,
+          "source": "https://vneconomy.vn/thuong-tet-2025-tai-ha-noi-tang-cao-nhat-311-trieu-dong.htm",
+          "source_label": "VnEconomy · Dẫn báo cáo Sở Lao động – Thương binh và Xã hội Hà Nội",
+          "published_on": "30/12/2024"
+        }
+      ]
+    }
+  }
+}

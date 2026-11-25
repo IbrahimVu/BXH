@@ -3,6 +3,9 @@ const tabs = Array.from(tabList.querySelectorAll("a"));
 const form = document.querySelector(".filters");
 const company = form.elements.namedItem("company");
 const minimum = form.elements.namedItem("minimum");
+const year = form.elements.namedItem("year");
+const headingYear = document.getElementById("heading-year");
+const defaultYear = year.value;
 const minimumError = document.querySelector("#minimum-error");
 
 function searchText(value) {
@@ -16,9 +19,9 @@ function placeKey(value) {
 }
 
 const countFormat = new Intl.NumberFormat("vi-VN");
-const panels = tabs.map((tab) => {
-  const panel = document.getElementById(tab.hash.slice(1));
-  const body = panel.querySelector("tbody");
+const panelsByYear = new Map(Array.from(year.options, ({ value }) => [value, []]));
+for (const panel of document.querySelectorAll(".ranking[data-year]")) {
+  const body = panel.querySelector(".company-results tbody");
   const remaining = panel.querySelector(".remaining-rows");
   const labels = new Map();
   const industries = new Map();
@@ -35,15 +38,18 @@ const panels = tabs.map((tab) => {
     const industryLabel = element.querySelector(".company-industry").textContent;
     const industryKey = searchText(industryLabel);
     if (!industries.has(industryKey)) industries.set(industryKey, industryLabel);
-    return { element, name: searchText(element.querySelector(".company-name").textContent), places, industry: industryKey, high: Number(element.dataset.high) };
+    const high = element.dataset.high === "" ? null : Number(element.dataset.high);
+    return { element, name: searchText(element.querySelector(".company-name").textContent), places, industry: industryKey, high };
   });
-  return {
+  panelsByYear.get(panel.dataset.year).push({
     panel,
     rows,
     places: [...labels].sort((a, b) => a[1].localeCompare(b[1], "vi")),
     industries: [...industries].sort((a, b) => a[1].localeCompare(b[1], "vi")),
     count: panel.querySelector(".filter-count"),
     table: panel.querySelector(".table-wrap"),
+    results: panel.querySelector(".company-results"),
+    hasSummary: Boolean(panel.querySelector(".archive-summary")),
     body,
     pageSize: Number(panel.dataset.pageSize),
     pagination: panel.querySelector(".pagination"),
@@ -51,16 +57,18 @@ const panels = tabs.map((tab) => {
     next: panel.querySelector(".next-page"),
     pageNumber: panel.querySelector(".page-number"),
     matches: [],
-  };
-});
+  });
+}
 
+let panels = panelsByYear.get(defaultYear);
 let activeIndex;
-function searchableFilter(id, normalize, allLabel, choices) {
+function searchableFilter(id, normalize, allLabel) {
   const input = document.getElementById(id);
   const menu = input.parentElement.querySelector(".filter-menu");
   const options = menu.querySelector('[role="listbox"]');
   const empty = menu.querySelector(".filter-empty");
-  const labels = new Map(choices);
+  let choices = [];
+  let labels = new Map();
   const selected = new Set();
   let highlighted = -1;
 
@@ -171,6 +179,14 @@ function searchableFilter(id, normalize, allLabel, choices) {
 
   return {
     selected,
+    setChoices(next) {
+      choices = next;
+      labels = new Map(choices);
+      for (const key of selected) {
+        if (!labels.has(key)) selected.delete(key);
+      }
+      close();
+    },
     reset() {
       selected.clear();
       close();
@@ -183,11 +199,11 @@ function allChoices(field) {
     .sort((a, b) => a[1].localeCompare(b[1], "vi"));
 }
 
-const place = searchableFilter("place-search", placeKey, "Tất cả địa bàn", allChoices("places"));
-const industry = searchableFilter("industry-search", searchText, "Tất cả ngành/lĩnh vực", allChoices("industries"));
+const place = searchableFilter("place-search", placeKey, "Tất cả địa bàn");
+const industry = searchableFilter("industry-search", searchText, "Tất cả ngành/lĩnh vực");
 
 function showPage(state, page) {
-  const { body, count, table, matches, pageSize, pagination, previous, next, pageNumber } = state;
+  const { body, count, table, results, hasSummary, rows, matches, pageSize, pagination, previous, next, pageNumber } = state;
   const pages = Math.ceil(matches.length / pageSize);
   const start = (page - 1) * pageSize;
   const visible = matches.slice(start, start + pageSize);
@@ -195,9 +211,11 @@ function showPage(state, page) {
   table.scrollTop = 0;
   count.textContent = visible.length
     ? `Hiển thị ${countFormat.format(start + 1)}–${countFormat.format(start + visible.length)} trong ${countFormat.format(matches.length)} kết quả.`
-    : "Không tìm thấy doanh nghiệp phù hợp.";
+    : rows.length ? "Không tìm thấy doanh nghiệp phù hợp."
+      : "Chưa có dữ liệu công khai đủ điều kiện xếp hạng doanh nghiệp cho dịp này.";
   count.hidden = false;
-  table.hidden = visible.length === 0;
+  results.hidden = visible.length === 0;
+  table.hidden = visible.length === 0 && !hasSummary;
   pagination.hidden = pages <= 1;
   if (pageNumber.options.length !== pages) {
     pageNumber.replaceChildren(...Array.from({ length: pages }, (_, index) =>
@@ -222,7 +240,7 @@ function filterRows() {
   state.matches = state.rows.filter((row) => row.name.includes(query)
     && (!places.size || row.places.some((key) => places.has(key)))
     && (!industries.size || industries.has(row.industry))
-    && row.high >= threshold);
+    && (!valid || input === "" || (row.high !== null && row.high >= threshold)));
   showPage(state, 1);
 }
 
@@ -231,30 +249,46 @@ function activate(index, updateUrl = false) {
   tabs.forEach((tab, position) => {
     const selected = position === index;
     tab.setAttribute("aria-selected", String(selected));
+    tab.setAttribute("aria-controls", panels[position].panel.id);
     tab.tabIndex = selected ? 0 : -1;
     panels[position].panel.hidden = !selected;
   });
 
   filterRows();
 
-  const hash = tabs[index].hash;
-  if (updateUrl && location.hash !== hash) history.pushState(null, "", hash);
+  if (updateUrl) {
+    const url = new URL(location.href);
+    url.hash = tabs[index].hash;
+    if (year.value === defaultYear) url.searchParams.delete("year");
+    else url.searchParams.set("year", year.value);
+    if (url.href !== location.href) history.pushState(null, "", url);
+  }
 }
 
-function activateFromHash() {
+function updateYear(value) {
+  year.value = value;
+  headingYear.textContent = value;
+  document.title = `Bảng xếp hạng thưởng Tết ${value} tại Hà Nội`;
+  panels = panelsByYear.get(value);
+  for (const state of [...panelsByYear.values()].flat()) state.panel.hidden = true;
+  for (const item of document.querySelectorAll("[data-summary-year]")) {
+    item.hidden = item.dataset.summaryYear !== value;
+  }
+  place.setChoices(allChoices("places"));
+  industry.setChoices(allChoices("industries"));
+}
+
+function activateFromUrl() {
+  const value = new URLSearchParams(location.search).get("year");
+  updateYear(panelsByYear.has(value) ? value : defaultYear);
   const index = tabs.findIndex((tab) => tab.hash === location.hash);
   activate(index === -1 ? 0 : index);
 }
 
 tabList.setAttribute("role", "tablist");
 tabs.forEach((tab, index) => {
-  const state = panels[index];
-  const { panel, previous, next, pageNumber } = state;
-  tab.id = `tab-${panel.id}`;
+  tab.id = `tab-${tab.hash.slice(1)}`;
   tab.setAttribute("role", "tab");
-  tab.setAttribute("aria-controls", panel.id);
-  panel.setAttribute("role", "tabpanel");
-  panel.setAttribute("aria-labelledby", tab.id);
   tab.addEventListener("click", (event) => {
     event.preventDefault();
     activate(index, true);
@@ -273,9 +307,15 @@ tabs.forEach((tab, index) => {
     activate(next, true);
     tabs[next].focus();
   });
-  previous.addEventListener("click", () => showPage(state, Number(pageNumber.value) - 1));
-  next.addEventListener("click", () => showPage(state, Number(pageNumber.value) + 1));
-  pageNumber.addEventListener("change", () => showPage(state, Number(pageNumber.value)));
+  for (const states of panelsByYear.values()) {
+    const state = states[index];
+    const { panel, previous, next, pageNumber } = state;
+    panel.setAttribute("role", "tabpanel");
+    panel.setAttribute("aria-labelledby", tab.id);
+    previous.addEventListener("click", () => showPage(state, Number(pageNumber.value) - 1));
+    next.addEventListener("click", () => showPage(state, Number(pageNumber.value) + 1));
+    pageNumber.addEventListener("change", () => showPage(state, Number(pageNumber.value)));
+  }
 });
 
 company.addEventListener("input", filterRows);
@@ -289,7 +329,12 @@ form.addEventListener("reset", (event) => {
   minimum.value = "";
   filterRows();
 });
-window.addEventListener("hashchange", activateFromHash);
-activateFromHash();
+year.addEventListener("change", () => {
+  updateYear(year.value);
+  activate(activeIndex, true);
+});
+window.addEventListener("popstate", activateFromUrl);
+window.addEventListener("hashchange", activateFromUrl);
+activateFromUrl();
 form.hidden = false;
 document.body.classList.add("results-ready");

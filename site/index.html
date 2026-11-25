@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Xếp hạng mức thưởng dự kiến dịp Tết Nguyên đán và Tết Dương lịch 2027 của các doanh nghiệp tại Hà Nội.">
+  <meta name="description" content="Bảng xếp hạng và dữ liệu công bố về thưởng Tết Nguyên đán, Tết Dương lịch tại Hà Nội qua các năm.">
   <title>Bảng xếp hạng thưởng Tết 2027 tại Hà Nội</title>
   <link rel="stylesheet" href="./style.css?v=$style_version">
   <script src="./rankings.js?v=$script_version" defer></script>
@@ -12,9 +12,9 @@
   <header class="hero">
     <div class="container">
       <div>
-        <h1>Thưởng Tết 2027 tại Hà Nội</h1>
-        <p class="intro">Xếp hạng doanh nghiệp theo mức thưởng dự kiến cao nhất, tính bằng triệu đồng/người.</p>
-        <p class="timestamp">Dữ liệu lúc <time datetime="$iso_timestamp">$last_checked</time> (giờ Việt Nam)</p>
+        <h1>Thưởng Tết <span id="heading-year">$default_year</span> tại Hà Nội</h1>
+        <p class="intro">Xếp hạng theo mức thưởng cao nhất, tính bằng triệu đồng/người.</p>
+        $timestamps
       </div>
       <nav class="occasion-tabs" aria-label="Dịp Tết">
         <a href="#nguyen-dan">Tết Nguyên đán</a>
@@ -25,15 +25,19 @@
   <main class="container results-layout">
     <form class="filters" aria-label="Lọc bảng xếp hạng" hidden>
       <div class="filter-field">
+        <label for="ranking-year">Năm</label>
+        <select id="ranking-year" name="year">$year_options</select>
+      </div>
+      <div class="filter-field">
         <label for="company-search">Doanh nghiệp</label>
         <input id="company-search" type="search" name="company" placeholder="Nhập tên doanh nghiệp">
       </div>
       <div class="filter-field filter-combobox">
-        <label for="place-search">Phường/xã</label>
+        <label for="place-search">Địa bàn</label>
         <input id="place-search" type="text" placeholder="Tất cả địa bàn" autocomplete="off"
           role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="place-options">
         <div class="filter-menu" hidden>
-          <ul id="place-options" role="listbox" aria-label="Phường/xã" aria-multiselectable="true"></ul>
+          <ul id="place-options" role="listbox" aria-label="Địa bàn" aria-multiselectable="true"></ul>
           <p class="filter-empty" role="status" hidden>Không tìm thấy địa bàn.</p>
         </div>
       </div>
@@ -60,8 +64,7 @@
         <summary>Nguồn và phạm vi dữ liệu</summary>
         <div class="source-notes">
           <p>Mỗi dịp có 30 doanh nghiệp mỗi trang. Hạng được tính trên toàn bộ dữ liệu đủ điều kiện của dịp đó. Dấu — biểu thị nguồn thiếu số liệu. Ngành/lĩnh vực lấy từ báo cáo và các biểu phân loại doanh nghiệp, hoặc ghi Chưa rõ khi thiếu thông tin.</p>
-          $scope
-          <p><a href="$directory">Danh mục báo cáo của các phường, xã</a> · <a href="$directory_hub">Danh mục báo cáo theo tỉnh, thành</a></p>
+          $sources
         </div>
       </details>
     </footer>

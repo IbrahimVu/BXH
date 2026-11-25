@@ -4,8 +4,7 @@ on:
   push:
     paths:
       - '.github/workflows/pages.yml'
-      - 'data/sources.json'
-      - 'data/snapshot.json'
+      - 'data/*.json'
       - 'scripts/**'
       - 'site/**'
       - 'requirements.txt'
