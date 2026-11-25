@@ -132,9 +132,9 @@ def document_rows(body):
     return rows
 
 
-def header_digest(rows, first_row):
+def header_digest(rows, first_row, header_start_row=1):
     markers = []
-    for row_number, row in enumerate(rows[: first_row - 1], 1):
+    for row_number, row in enumerate(rows[header_start_row - 1 : first_row - 1], header_start_row):
         for column, value in enumerate(row):
             if not isinstance(value, str):
                 continue
@@ -166,7 +166,7 @@ def read_export(body, kind, layouts, industry_layouts=()):
             if tab not in workbook.sheetnames:
                 raise ValueError(f"reviewed tab missing: {tab}")
             rows = list(workbook[tab].values)
-            if header_digest(rows, layout["first_row"]) != layout["header_sha256"]:
+            if header_digest(rows, layout["first_row"], layout.get("header_start_row", 1)) != layout["header_sha256"]:
                 raise ValueError(f"report layout changed: {tab}")
             tables[tab] = rows
         for layout in industry_layouts:
