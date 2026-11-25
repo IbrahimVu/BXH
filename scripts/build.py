@@ -94,12 +94,19 @@ def render_table(ranking, anchor, title, year, summary):
         rank = f'{row["rank"]:02d}' if row.get("rank") else "—"
         industry_note = row.get("industry_reference")
         industry_title = f' title="{escape(industry_note, quote=True)}"' if industry_note else ""
+        industry = row.get("industry") or "Chưa rõ"
+        industry_text = escape(industry)
+        if len(industry) > 24:
+            industry_text = (
+                '<details class="industry-detail"><summary>'
+                f'<span>{industry_text}</span></summary></details>'
+            )
         table_rows.append(
             f'<tr data-high="{high if high is not None else ""}"><td class="rank">{rank}</td>'
             f'<th scope="row"><span class="company-name">{escape(public_company_name(row["name"]))}</span>{status}</th>'
-            f'<td class="company-place">{escape(row["place"])}</td>'
-            f'<td class="company-industry"{industry_title}>{escape(row.get("industry") or "Chưa rõ")}</td>'
             f'<td class="high">{format_number(row["high"])}</td>'
+            f'<td class="company-place">{escape(row["place"])}</td>'
+            f'<td class="company-industry"{industry_title}>{industry_text}</td>'
             f'<td class="amount">{format_number(row["mean"])}</td>'
             f'<td class="amount">{format_number(row["low"])}</td>'
             f'<td>{source}</td><td>{published}</td></tr>'
@@ -117,15 +124,16 @@ def render_table(ranking, anchor, title, year, summary):
 <section class="ranking" id="{anchor}" aria-labelledby="title-{anchor}" data-page-size="{PAGE_SIZE}" data-year="{year}"{hidden}>
   <div class="section-heading">
     <h2 id="title-{anchor}">{title} {year}</h2>
-    <p>{coverage}</p>
+    <p class="ranking-total">{coverage}</p>
+    <p class="filter-count" role="status" hidden></p>
+    <span class="ranking-unit">Triệu đồng/người</span>
   </div>
-  <p class="filter-count" role="status" hidden></p>
   <div class="table-wrap" tabindex="0" role="region" aria-label="Bảng thưởng {title}">
     <table class="company-results">
       <thead><tr>
         <th scope="col">Hạng</th><th scope="col">Doanh nghiệp</th>
-        <th scope="col">{place_label}</th><th scope="col">Ngành/lĩnh vực kinh doanh</th>
         <th scope="col">Cao nhất</th>
+        <th scope="col">{place_label}</th><th scope="col">Ngành/lĩnh vực</th>
         <th scope="col">Bình quân</th><th scope="col">Thấp nhất</th>
         <th scope="col">Nguồn</th><th scope="col">{date_label}</th>
       </tr></thead>

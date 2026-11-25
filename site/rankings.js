@@ -7,6 +7,8 @@ const year = form.elements.namedItem("year");
 const headingYear = document.getElementById("heading-year");
 const defaultYear = year.value;
 const minimumError = document.querySelector("#minimum-error");
+const filterToggle = form.querySelector(".filter-toggle");
+const filterBadge = form.querySelector(".filter-badge");
 
 function searchText(value) {
   return value.toLocaleLowerCase("vi").normalize("NFD")
@@ -236,6 +238,10 @@ function filterRows() {
   const threshold = valid ? Number(input.replace(",", ".")) : 0;
   minimumError.hidden = valid;
   minimum.setAttribute("aria-invalid", String(!valid));
+  const activeFilters = Number(places.size > 0) + Number(industries.size > 0) + Number(input !== "");
+  filterBadge.hidden = activeFilters === 0;
+  filterBadge.textContent = String(activeFilters);
+  filterToggle.setAttribute("aria-label", activeFilters ? `Bộ lọc, ${activeFilters} mục đang áp dụng` : "Bộ lọc");
 
   state.matches = state.rows.filter((row) => row.name.includes(query)
     && (!places.size || row.places.some((key) => places.has(key)))
@@ -320,6 +326,17 @@ tabs.forEach((tab, index) => {
 
 company.addEventListener("input", filterRows);
 minimum.addEventListener("input", filterRows);
+filterToggle.addEventListener("click", () => {
+  const expanded = filterToggle.getAttribute("aria-expanded") === "true";
+  filterToggle.setAttribute("aria-expanded", String(!expanded));
+});
+form.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && !event.defaultPrevented
+      && filterToggle.getAttribute("aria-expanded") === "true" && filterToggle.offsetWidth) {
+    filterToggle.setAttribute("aria-expanded", "false");
+    filterToggle.focus();
+  }
+});
 form.addEventListener("submit", (event) => event.preventDefault());
 form.addEventListener("reset", (event) => {
   event.preventDefault();

@@ -13,7 +13,6 @@
     <div class="container">
       <div>
         <h1>Thưởng Tết <span id="heading-year">$default_year</span> tại Hà Nội</h1>
-        <p class="intro">Xếp hạng theo mức thưởng cao nhất, tính bằng triệu đồng/người.</p>
         $timestamps
       </div>
       <nav class="occasion-tabs" aria-label="Dịp Tết">
@@ -32,30 +31,33 @@
         <label for="company-search">Doanh nghiệp</label>
         <input id="company-search" type="search" name="company" placeholder="Nhập tên doanh nghiệp">
       </div>
-      <div class="filter-field filter-combobox">
-        <label for="place-search">Địa bàn</label>
-        <input id="place-search" type="text" placeholder="Tất cả địa bàn" autocomplete="off"
-          role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="place-options">
-        <div class="filter-menu" hidden>
-          <ul id="place-options" role="listbox" aria-label="Địa bàn" aria-multiselectable="true"></ul>
-          <p class="filter-empty" role="status" hidden>Không tìm thấy địa bàn.</p>
+      <button type="button" class="filter-toggle" aria-expanded="false" aria-controls="advanced-filters">Bộ lọc<span class="filter-badge" aria-hidden="true" hidden></span></button>
+      <div id="advanced-filters" class="advanced-filters">
+        <div class="filter-field filter-combobox">
+          <label for="place-search">Địa bàn</label>
+          <input id="place-search" type="text" placeholder="Tất cả địa bàn" autocomplete="off"
+            role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="place-options">
+          <div class="filter-menu" hidden>
+            <ul id="place-options" role="listbox" aria-label="Địa bàn" aria-multiselectable="true"></ul>
+            <p class="filter-empty" role="status" hidden>Không tìm thấy địa bàn.</p>
+          </div>
         </div>
-      </div>
-      <div class="filter-field filter-combobox">
-        <label for="industry-search">Ngành/lĩnh vực</label>
-        <input id="industry-search" type="text" placeholder="Tất cả ngành/lĩnh vực" autocomplete="off"
-          role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="industry-options">
-        <div class="filter-menu" hidden>
-          <ul id="industry-options" role="listbox" aria-label="Ngành/lĩnh vực" aria-multiselectable="true"></ul>
-          <p class="filter-empty" role="status" hidden>Không tìm thấy ngành/lĩnh vực.</p>
+        <div class="filter-field filter-combobox">
+          <label for="industry-search">Ngành/lĩnh vực</label>
+          <input id="industry-search" type="text" placeholder="Tất cả ngành/lĩnh vực" autocomplete="off"
+            role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="industry-options">
+          <div class="filter-menu" hidden>
+            <ul id="industry-options" role="listbox" aria-label="Ngành/lĩnh vực" aria-multiselectable="true"></ul>
+            <p class="filter-empty" role="status" hidden>Không tìm thấy ngành/lĩnh vực.</p>
+          </div>
         </div>
+        <div class="filter-field">
+          <label for="minimum-reward">Thưởng cao nhất từ</label>
+          <input id="minimum-reward" type="text" name="minimum" inputmode="decimal" placeholder="Triệu đồng/người" aria-describedby="minimum-error">
+        </div>
+        <button type="reset">Xóa bộ lọc</button>
+        <p id="minimum-error" class="filter-error" hidden>Nhập một số từ 0 trở lên, ví dụ 12,5.</p>
       </div>
-      <div class="filter-field">
-        <label for="minimum-reward">Thưởng cao nhất từ</label>
-        <input id="minimum-reward" type="text" name="minimum" inputmode="decimal" placeholder="Triệu đồng/người" aria-describedby="minimum-error">
-      </div>
-      <button type="reset">Xóa bộ lọc</button>
-      <p id="minimum-error" class="filter-error" hidden>Nhập một số từ 0 trở lên, ví dụ 12,5.</p>
     </form>
     <noscript><p>Bật JavaScript để lọc và xem các trang tiếp theo của bảng xếp hạng.</p></noscript>
     $sections
