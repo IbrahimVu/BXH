@@ -22,6 +22,8 @@ Supabase Cron gọi workflow `pages.yml` của GitHub. Mỗi lần chạy thành
 ## Phạm vi
 
 - Chương trình kiểm tra danh mục Thư Viện Pháp Luật theo tỉnh, thành và các trang Hà Nội được liên kết. Chương trình đọc Google Sheets và Google Docs công khai theo các biểu mẫu đã đối chiếu trong `data/sources.json`. Nguồn mới được báo trong log để đối chiếu cấu trúc. Biểu mẫu Google Forms là nơi nộp báo cáo.
+- Hai danh mục về lương, thưởng Tết tại Hà Nội được đọc để tìm bảng kết quả. Hai bài về báo cáo sử dụng lao động cuối năm 2025 và 2026 chỉ được dùng để tìm bài liên quan đến thưởng Tết 2027 tại Hà Nội.
+- Các liên kết trong danh sách Word được đối chiếu theo mã tài liệu Google để tránh đếm trùng. Bảng Đại Mỗ được tải để theo dõi và chờ xác minh đơn vị giữa tiêu đề và số khai.
 - Mỗi dịp Tết có bảng xếp hạng riêng theo mức cao nhất. Hạng đồng điểm dùng kiểu 1, 2, 2, 4. Mức thiếu được để trống. Bản ghi trùng nhưng khác số liệu hoặc có đơn vị chưa rõ được loại khỏi bảng.
 - Nếu bảng nguồn thay cột hoặc xuất hiện lỗi truy cập mới, workflow dừng trước bước triển khai để giữ bản Pages đang hiển thị. Hai nguồn có vấn đề về quyền truy cập đã xác định là Gia Lâm và Hoàng Mai. Crawler kiểm tra lại cả hai mỗi lượt. Website ghi rõ nguồn nào chưa đọc được trong lần quét.
 - Thư mục xuất bản chứa trang tổng hợp, mã bộ lọc và font tiếng Việt. Tệp nguồn thô, tên người liên hệ, số điện thoại và địa chỉ chi tiết không được ghi vào bản xuất bản.

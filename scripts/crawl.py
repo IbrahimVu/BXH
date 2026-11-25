@@ -6,6 +6,7 @@ import json
 import re
 import time
 from concurrent.futures import ThreadPoolExecutor
+from html import unescape
 from html.parser import HTMLParser
 from urllib.error import HTTPError, URLError
 from urllib.parse import urljoin, urlsplit
@@ -17,7 +18,7 @@ import openpyxl
 from rankings import normalized
 
 SHEET_URL = re.compile(r"^/(spreadsheets|document)/(?:u/\d+/)?d/([A-Za-z0-9_-]+)(?:/|$)")
-REPORT_HOST = "thuvienphapluat.vn"
+DIRECTORY_HOSTS = {"thuvienphapluat.vn", "luatvietnam.vn"}
 GOOGLE_HOST = "docs.google.com"
 MAX_DOWNLOAD = 24 * 1024 * 1024
 HEADER_MARKERS = ("doanhnghiep", "donvi", "caonhat", "thapnhat", "binhquan", "luong", "thuong", "msthue", "masothue")
@@ -45,9 +46,31 @@ def source_key(url):
 
 
 def public_directory_links(url, body):
+    html = body.decode("utf-8", errors="replace")
+    links = Links()
+    links.feed(html)
+    plain_urls = re.findall(r"""https://docs\.google\.com/[^\s<>"']+""", unescape(html))
+    return {key for href in (*links.urls, *plain_urls) if (key := source_key(urljoin(url, href)))}
+
+
+def hanoi_bonus_articles(url, body):
     links = Links()
     links.feed(body.decode("utf-8", errors="replace"))
-    return {key for href in links.urls if (key := source_key(urljoin(url, href)))}
+    for href in links.urls:
+        candidate = urlsplit(urljoin(url, href))
+        if (
+            candidate.scheme == "https" and candidate.netloc in DIRECTORY_HOSTS
+            and "ha-noi" in candidate.path and "thuong-tet" in candidate.path
+            and "2027" in candidate.path and candidate.path.endswith(".html")
+        ):
+            yield candidate._replace(query="", fragment="").geturl()
+
+
+def download_directory(url):
+    host = urlsplit(url).hostname
+    if host not in DIRECTORY_HOSTS:
+        raise ValueError(f"unsupported directory host: {host}")
+    return download(url, host)
 
 
 def download(url, expected_host):
@@ -168,30 +191,40 @@ def crawl(config):
     linked = set()
     directories_checked = 0
     directories = dict.fromkeys(config["directory"])
-    if hub := config.get("directory_hub"):
+    references = list(config.get("reference_directories", ()))
+    if config.get("directory_hub"):
+        references.insert(0, config["directory_hub"])
+    for url in references:
         try:
-            links = Links()
-            links.feed(download(hub, REPORT_HOST).decode("utf-8", errors="replace"))
-            for href in links.urls:
-                candidate = urlsplit(urljoin(hub, href))
-                if (
-                    candidate.scheme == "https" and candidate.netloc == REPORT_HOST
-                    and "ha-noi" in candidate.path and "thuong-tet-2027" in candidate.path
-                    and candidate.path.endswith(".html")
-                ):
-                    directories.setdefault(candidate._replace(query="", fragment="").geturl())
+            articles = set(hanoi_bonus_articles(url, download_directory(url)))
+            for article in sorted(articles):
+                directories.setdefault(article)
+            print(f"Reference checked ({len(articles)} Hanoi bonus articles): {url}")
         except (URLError, TimeoutError, ValueError) as exc:
-            print(f"Main directory unavailable: {type(exc).__name__}")
+            print(f"Reference unavailable ({type(exc).__name__}): {url}")
     for url in directories:
         try:
-            entries = public_directory_links(url, download(url, REPORT_HOST))
+            entries = public_directory_links(url, download_directory(url))
             if entries:
                 linked.update(entries)
                 directories_checked += 1
-            else:
-                print("Directory returned no report links")
+            print(f"Directory checked ({len(entries)} report links): {url}")
         except (URLError, TimeoutError, ValueError) as exc:
-            print(f"Directory unavailable: {type(exc).__name__}")
+            print(f"Directory unavailable ({type(exc).__name__}): {url}")
+
+    for source in config.get("review_sources", ()):
+        kind, identifier = source_key(source["url"])
+        linked.add((kind, identifier))
+        export = f"https://{GOOGLE_HOST}/spreadsheets/d/{identifier}/export?format=xlsx"
+        try:
+            body = download(export, GOOGLE_HOST)
+            workbook = openpyxl.load_workbook(io.BytesIO(body), read_only=True, data_only=True)
+            try:
+                print(f"Report available for review ({len(workbook.sheetnames)} tabs): {source['place']}")
+            finally:
+                workbook.close()
+        except (URLError, TimeoutError, ValueError, BadZipFile) as exc:
+            print(f"Review report unavailable ({type(exc).__name__}): {source['place']}")
 
     known = {source_key(source["url"]) for source in config["sources"]}
     new_sources = sorted(linked - known)
