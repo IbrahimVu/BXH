@@ -126,7 +126,7 @@ def render_table(ranking, anchor, title, year, summary):
     <h2 id="title-{anchor}">{title} {year}</h2>
     <p class="ranking-total">{coverage}</p>
     <p class="filter-count" role="status" hidden></p>
-    <span class="ranking-unit">Triệu đồng/người</span>
+    <span class="ranking-unit">{"Kê khai · " if current else ""}Triệu đồng/người</span>
   </div>
   <div class="table-wrap" tabindex="0" role="region" aria-label="Bảng thưởng {title}">
     <table class="company-results">
