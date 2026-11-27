@@ -12,12 +12,11 @@ Chọn năm và tab theo dịp Tết. Bộ lọc dùng chung cho tên doanh nghi
 
 ## Lịch crawl trên Supabase
 
-Supabase Cron gọi workflow `pages.yml` của GitHub. Mỗi lần chạy thành công, workflow cập nhật dữ liệu 2027, đọc bản lưu trữ 2025–2026 đã đối chiếu và xuất bản lên GitHub Pages.
+Supabase Cron là nơi duy nhất đặt lịch crawl. Hai job Supabase gọi workflow `pages.yml` qua `workflow_dispatch`. Mỗi lần chạy thành công, workflow cập nhật dữ liệu 2027, đọc bản lưu trữ 2025–2026 đã đối chiếu và xuất bản lên GitHub Pages.
 
 1. Tạo GitHub fine-grained token chỉ cho repo `IbrahimVu/BXH` với quyền **Actions: Read and write**. Lưu token trong **Supabase Vault** với tên `bxh_github_actions_token`.
 2. Chạy [supabase/schedule.sql](supabase/schedule.sql) trong SQL Editor của dự án BXH. Tệp cập nhật job `bxh-github-pages-crawl` vào **23:59 giờ Hà Nội** (16:59 UTC) và tạo hoặc cập nhật job `bxh-github-pages-crawl-noon` vào **12:00 giờ Hà Nội** (05:00 UTC).
 3. Chạy thử job từ Supabase và kiểm tra phản hồi HTTP cùng lượt chạy mới trong GitHub Actions. Mã HTTP 2xx xác nhận GitHub đã nhận lệnh. Job **deploy** thành công xác nhận site đã cập nhật.
-4. Sau khi xác minh Supabase gọi được workflow, đặt repository variable `SUPABASE_MANAGES_CRAWL` thành `true` tại **Settings → Secrets and variables → Actions → Variables** để lịch GitHub cũ bỏ qua bước crawl.
 
 ## Phạm vi
 

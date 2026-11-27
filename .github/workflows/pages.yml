@@ -8,8 +8,6 @@ on:
       - 'scripts/**'
       - 'site/**'
       - 'requirements.txt'
-  schedule:
-    - cron: '59 16 * * *' # Lịch cũ trong thời gian chuyển sang Supabase.
   workflow_dispatch:
     inputs:
       use_snapshot:
@@ -26,9 +24,7 @@ concurrency:
 
 jobs:
   build:
-    if: >-
-      github.ref_name == github.event.repository.default_branch &&
-      (github.event_name != 'schedule' || vars.SUPABASE_MANAGES_CRAWL != 'true')
+    if: github.ref_name == github.event.repository.default_branch
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
