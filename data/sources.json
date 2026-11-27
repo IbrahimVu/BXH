@@ -279,7 +279,10 @@
         "status_lunar": null,
         "status_solar": null
       },
-      "header_sha256": "7e3a5bd967d353466b7f76793ffa76c1add7d5fc352d6f45d6f72c02d4220d59"
+      "header_sha256": "7e3a5bd967d353466b7f76793ffa76c1add7d5fc352d6f45d6f72c02d4220d59",
+      "alternate_header_sha256": [
+        "6543901cec1bacdeca535795f22b415fddb2f1f889dd080ec5c58b5e716de911"
+      ]
     },
     {
       "source": 4,
@@ -357,7 +360,10 @@
         "status_lunar": null,
         "status_solar": null
       },
-      "header_sha256": "56d05c8683ba352afd502b65e23d13fbe780caa7a1bd2a3e6b933fd54436e440"
+      "header_sha256": "56d05c8683ba352afd502b65e23d13fbe780caa7a1bd2a3e6b933fd54436e440",
+      "alternate_header_sha256": [
+        "125961f86e06ab283c728930776bf86d19cbb126620edb02560c42956badd582"
+      ]
     },
     {
       "source": 9,

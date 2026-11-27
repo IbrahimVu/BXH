@@ -166,7 +166,9 @@ def read_export(body, kind, layouts, industry_layouts=()):
             if tab not in workbook.sheetnames:
                 raise ValueError(f"reviewed tab missing: {tab}")
             rows = list(workbook[tab].values)
-            if header_digest(rows, layout["first_row"], layout.get("header_start_row", 1)) != layout["header_sha256"]:
+            digest = header_digest(rows, layout["first_row"], layout.get("header_start_row", 1))
+            reviewed_digests = (layout["header_sha256"], *layout.get("alternate_header_sha256", ()))
+            if digest not in reviewed_digests:
                 raise ValueError(f"report layout changed: {tab}")
             tables[tab] = rows
         for layout in industry_layouts:
